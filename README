@@ -1,0 +1,72 @@
+= Cliable
+
+* http://death.rubyforge.org
+* http://death.rubyforge.org/cliable
+
+== DESCRIPTION:
+
+The Cliable mixin is a very quick and and easy
+way to make almost any class usable via a command
+line interface. It simply uses writer methods as
+option setters, and the first command line argument
+as the method to call, with the subsequent arguments
+passed to the method.
+
+== FEATURES/PROBLEMS:
+
+* Super easy to use --just mixin.
+* Uses public writters as CLI options.
+* And public methods as subcommands.
+
+== RELEASE/NOTES:
+
+Please see RELEASE file.
+
+== SYNOPSIS:
+
+Simply mixin Cliable, then call #execute_command.
+
+  class X
+    include Cliable
+    attr_accessor :quiet
+    def bread(*args)
+      ["BREAD", quiet, *args]
+    end
+    def butter(*args)
+      ["BUTTER", quiet, *args]
+    end
+  end
+
+  x = X.new
+
+  x.execute_command("butter yum")
+  => ["BUTTER", nil, "yum"]
+
+  x.execute_command("bread --quiet")
+  => ["BUTTER", true]
+
+See RDocs for more information.
+
+== INSTALL:
+
+  $ sudo gem install cliable
+
+== LICENSE:
+
+(LGPL v3 License)
+
+Copyright (c) 2009 Death_of_a_Programmer
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+

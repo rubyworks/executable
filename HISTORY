@@ -1,0 +1,11 @@
+= HISTORY
+
+== 1.0.0 / 2009-06-25
+
+This is the initialize release of Cliable (as a stand alone project).
+Cliable is a mixin that can turn any class into an commandline interface.
+
+* 1 Major Enhancement
+
+  * Birthday!
+
