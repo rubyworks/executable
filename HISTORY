@@ -1,9 +1,9 @@
 = HISTORY
 
-== 1.0.0 / 2009-06-25
+== 1.0.0 / 2011-04-15
 
-This is the initialize release of Cliable (as a stand alone project).
-Cliable is a mixin that can turn any class into an commandline interface.
+This is the initialize release of Executable (as a stand alone project).
+Executable is a mixin that can turn any class into an commandline interface.
 
 * 1 Major Enhancement
 
