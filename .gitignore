@@ -1,4 +1,5 @@
 log
+pkg
 doc/rdoc
 doc/ri
-MANIFEST
+site/docs

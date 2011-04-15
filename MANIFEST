@@ -1,0 +1,8 @@
+#!mast lib meta test [A-Z]*
+lib/executable.rb
+test/test_executable.rb
+Rakefile
+PROFILE
+LICENSE
+README
+HISTORY
