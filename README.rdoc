@@ -1,9 +1,5 @@
 = Executable
 
-* http://rubyworks.github.com/executable
-* http://github.com/rubyworks/executable
-
-
 == DESCRIPTION
 
 The Executable mixin is a very quick and and easy
@@ -21,6 +17,12 @@ passed to the method.
 * Public methods become subcommands.
 
 
+== RESORUCES
+
+* http://rubyworks.github.com/executable
+* http://github.com/rubyworks/executable
+
+
 == RELEASE NOTES
 
 Please see HISTORY file.
@@ -35,36 +37,40 @@ Simply mixin Executable, then call #execute_command.
 
     attr_accessor :quiet
 
+    attr_accessor :size
+
     def bread(*args)
-      ["BREAD", quiet, *args]
+      ["BREAD", quiet, size, *args]
     end
 
     def butter(*args)
-      ["BUTTER", quiet, *args]
+      ["BUTTER", quiet, size, *args]
     end
   end
 
   x = X.new
 
   x.execute_command("butter yum")
-  => ["BUTTER", nil, "yum"]
+  => ["BUTTER", nil, nil, "yum"]
 
-  x.execute_command("bread --quiet")
-  => ["BREAD", true]
+  x.execute_command("bread --quiet --size=big")
+  => ["BREAD", true, "big"]
 
 
-The only (minor) limitation of Executable, as opposed to other light-weight
-command-line parsers is the need to use an <code>=</code> sign when specifying
-options that take an argument, e.g.
+Notice that Executable requires an equal-sign (<code>=</code>) be used
+when specifying values for non-boolean attributes.
 
-  x.execute_command("foo --name=example")
+To make the command available on the comamnd line, add an executable
+to your project passing ARGV to the #execute_command method.
 
-See RDocs for more information.
+  #!usr/bin/env ruby
+  require 'x'
+  X.execute_command(ARGV)
 
 
 == INSTALL
 
-  $ sudo gem install executable
+  $ gem install executable
 
 
 == LEGAL
