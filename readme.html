@@ -34,10 +34,13 @@ with the subsequent arguments passed to the method.</p>
 
 <pre>class X
   include Executable
+
   attr_accessor :quiet
+
   def bread(*args)
     [&quot;BREAD&quot;, quiet, *args]
   end
+
   def butter(*args)
     [&quot;BUTTER&quot;, quiet, *args]
   end
