@@ -4,9 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-  <title>File: cliable.rb [Cliable]</title>
+  <title>File: executable.rb [Executable]</title>
 
   <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
 
@@ -20,12 +20,11 @@
     charset="utf-8"></script>
 </head>
 
-
 <body class="file file-popup">
   <div id="metadata">
     <dl>
       <dt class="modified-date">Last Modified</dt>
-      <dd class="modified-date">Sat Jun 27 11:18:09 -0400 2009</dd>
+      <dd class="modified-date">Tue Apr 12 07:42:09 -0400 2011</dd>
 
       
       <dt class="requires">Requires</dt>
@@ -46,54 +45,49 @@
     
     <div class="description">
       <h2>Description</h2>
-      <h1><a href="../Cliable.html">Cliable</a> Mixin</h1>
-<p>
-The <a href="../Cliable.html">Cliable</a> mixin is a very quick and and
-easy way to make almost any class usable via a command line interface. It
-simply uses writer methods as option setters, and the first command line
+      
+<h1><a href="../Executable.html">Executable</a> Mixin</h1>
+
+<p>The <a href="../Executable.html">Executable</a> mixin is a very quick and
+and easy way to make almost any class usable via a command line interface.
+It simply uses writer methods as option setters, and the first command line
 argument as the method to call, with the subsequent arguments passed to the
-method.
-</p>
-<p>
-The only limitation of this approach (besides the weak control of the
+method.</p>
+
+<p>The only limitation of this approach (besides the weak control of the
 process) is that required options must be specified with the key=value
-notation.
-</p>
-<pre>
-  class X
-    include Cliable
+notation.</p>
 
-    attr_accessor :quiet
+<pre>class X
+  include Executable
 
-    def bread(*args)
-      [&quot;BREAD&quot;, quiet, *args]
-    end
+  attr_accessor :quiet
 
-    def butter(*args)
-      [&quot;BUTTER&quot;, quiet, *args]
-    end
+  def bread(*args)
+    [&quot;BREAD&quot;, quiet, *args]
   end
 
-  x = X.new
+  def butter(*args)
+    [&quot;BUTTER&quot;, quiet, *args]
+  end
+end
 
-  x.execute_command(&quot;butter yum&quot;)
-  =&gt; [&quot;BUTTER&quot;, nil, &quot;yum&quot;]
+x = X.new
 
-  x.execute_command(&quot;bread --quiet&quot;)
-  =&gt; [&quot;BUTTER&quot;, true]
-</pre>
-<p>
-<a href="../Cliable.html">Cliable</a> also defines command_missing and
-option_missing, which you can override to provide suitable results.
-</p>
-<p>
-TODO: Maybe command_missing is redundant, and method_missing would suffice?
-</p>
+x.execute_command(&quot;butter yum&quot;)
+=&gt; [&quot;BUTTER&quot;, nil, &quot;yum&quot;]
+
+x.execute_command(&quot;bread --quiet&quot;)
+=&gt; [&quot;BUTTER&quot;, true]</pre>
+
+<p><a href="../Executable.html">Executable</a> also defines #command_missing
+and #option_missing, which you can override to provide suitable results.</p>
+
+<p>TODO: Maybe command_missing is redundant, and method_missing would suffice?</p>
 
     </div>
     
   </div>
 </body>
-
-
 </html>
+
