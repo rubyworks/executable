@@ -1,7 +1,8 @@
 ---
 rdoc:
   service  : RDoc
-  template : hanna
+  template : redfish
+  output   : ~
   include  : ~
   exclude  : ~
   main     : ~
