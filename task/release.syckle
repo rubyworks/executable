@@ -5,6 +5,10 @@ box do
   active true
 end
 
+grancher do
+  active true
+end
+
 email 'announce' do
   file    nil
   subject nil
