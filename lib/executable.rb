@@ -1,6 +1,6 @@
-# = Cliable Mixin
+# = Executable Mixin
 #
-# The Cliable mixin is a very quick and and easy
+# The Executable mixin is a very quick and and easy
 # way to make almost any class usable via a command
 # line interface. It simply uses writer methods as
 # option setters, and the first command line argument
@@ -12,7 +12,7 @@
 # be specified with the key=value notation.
 #
 #   class X
-#     include Cliable
+#     include Executable
 #
 #     attr_accessor :quiet
 #
@@ -33,12 +33,12 @@
 #   x.execute_command("bread --quiet")
 #   => ["BUTTER", true]
 #
-# Cliable also defines #command_missing and #option_missing,
+# Executable also defines #command_missing and #option_missing,
 # which you can override to provide suitable results.
 #
 # TODO: Maybe command_missing is redundant, and method_missing would suffice?
 #
-module Cliable
+module Executable
 
   class NoCommandError < NameError
   end
@@ -48,7 +48,7 @@ module Cliable
 
   # Used to invoke the command.
   def execute_command(argv=ARGV)
-    Cliable.run(self, argv)
+    Executable.run(self, argv)
   end
 
   # This is the fallback subcommand. Override this to provide
@@ -157,7 +157,7 @@ end
 =begin SPEC
 
 class X
-  include Clio::Cliable
+  include Executable
 
   attr_accessor :file
   attr_accessor :quiet
@@ -175,7 +175,7 @@ class X
   end
 end
 
-Respect.spec "Cliable" do
+Respect.spec "Executable" do
 
   it "first command runs" do
     x = X.new
