@@ -1,7 +1,7 @@
 = Executable
 
 * http://rubyworks.github.com/executable
-* http://github.comd/rubyworks/executable
+* http://github.com/rubyworks/executable
 
 
 == DESCRIPTION
@@ -14,11 +14,11 @@ as the method to call, with the subsequent arguments
 passed to the method.
 
 
-== FEATURES/PROBLEMS
+== FEATURES
 
-* Super easy to use --just mixin.
-* Uses public writters as CLI options.
-* And public methods as subcommands.
+* Super easy to use, just mixin.
+* Public writters become CLI options.
+* Public methods become subcommands.
 
 
 == RELEASE NOTES
@@ -47,12 +47,12 @@ Simply mixin Executable, then call #execute_command.
   => ["BUTTER", nil, "yum"]
 
   x.execute_command("bread --quiet")
-  => ["BUTTER", true]
+  => ["BREAD", true]
 
 See RDocs for more information.
 
 
-== INSTALLATION:
+== INSTALL
 
   $ sudo gem install executable
 
@@ -62,4 +62,16 @@ See RDocs for more information.
 (Apache 2.0)
 
 Copyright (c) 2009 Thomas Sawyer
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this program except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
