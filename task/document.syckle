@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+rdoc do
+  template "redfish"
+  output   "site/docs/api"
+  include  nil
+  exclude  ["Rakefile"]
+  extra    nil
+end
+
+ridoc do
+  output ".ri"
+  active true
+end
+
+dnote do
+  loadpath nil
+  labels   nil
+  output   nil
+  #format   nil
+end
+
+#vclog do
+#  format :html   # xml, txt
+#  layout :rel    # gnu
+#  typed  false
+#  output nil
+#  active false
+#end
+
