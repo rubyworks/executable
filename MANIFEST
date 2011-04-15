@@ -1,8 +1,8 @@
-#!mast lib meta test [A-Z]*
+#!mast -x Rakefile lib meta test [A-Z]*
 lib/executable.rb
 test/test_executable.rb
-Rakefile
 PROFILE
 LICENSE
-README
+README.rdoc
 HISTORY
+VERSION

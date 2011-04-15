@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Executable</title>
+  <link rel="icon" type="image/png" href="icon.png">
+  <script src="https://www.google.com/jsapi?key=ABQIAAAAC0cwg6G7o9jiwZmqNywcHhTFDYVHHqbagoxxH3eapnRTbNVJyxRCtIdgQ791BGYBsns_CTixx4KyPg" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script>
+    //google.load("jquery", "1.5.2");
+    $(document).ready(function(){
+      $("#readme").load("readme.html");
+    });
+  </script>
+  <style>
+    body { font-family: monospace; }
+    #main { margin: 0 auto; width: 800px; }
+    li p { margin: 2px; }
+    h1 { font-size: 3em; }
+    h2 { margin-top: 30px; }
+  </style>
+</head>
+<body>
+<div id="main">
+  <div id="readme">
+  </div>
+</div>
+</body>
+</html>
+
