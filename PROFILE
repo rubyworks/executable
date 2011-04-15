@@ -1,7 +1,7 @@
 ---
 title  : Executable
 summary: Any class, a command-line interface.
-created: 08-08-08 23:09:48 -0400
+created: 2008-08-08
 
 description:
   The Executable mixin is a very quick and and easy
