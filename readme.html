@@ -39,34 +39,38 @@ href="http://github.com/rubyworks/executable">github.com/rubyworks/executable</a
 
   attr_accessor :quiet
 
+  attr_accessor :size
+
   def bread(*args)
-    [&quot;BREAD&quot;, quiet, *args]
+    [&quot;BREAD&quot;, quiet, size, *args]
   end
 
   def butter(*args)
-    [&quot;BUTTER&quot;, quiet, *args]
+    [&quot;BUTTER&quot;, quiet, size, *args]
   end
 end
 
 x = X.new
 
 x.execute_command(&quot;butter yum&quot;)
-=&gt; [&quot;BUTTER&quot;, nil, &quot;yum&quot;]
+=&gt; [&quot;BUTTER&quot;, nil, nil, &quot;yum&quot;]
 
-x.execute_command(&quot;bread --quiet&quot;)
-=&gt; [&quot;BREAD&quot;, true]</pre>
+x.execute_command(&quot;bread --quiet --size=big&quot;)
+=&gt; [&quot;BREAD&quot;, true, &quot;big&quot;]</pre>
 
-<p>The only (minor) limitation of Executable, as opposed to other light-weight
-command-line parsers is the need to use an <tt>=</tt> sign when specifying
-options that take an argument, e.g.</p>
+<p>Notice that Executable requires an equal-sign (<tt>=</tt>) be used when
+specifying values for non-boolean attributes.</p>
 
-<pre>x.execute_command(&quot;foo --name=example&quot;)</pre>
+<p>To make the command available on the comamnd line, add an executable to
+your project passing ARGV to the #execute_command method.</p>
 
-<p>See RDocs for more information.</p>
+<pre>#!usr/bin/env ruby
+require 'x'
+X.execute_command(ARGV)</pre>
 
 <h2>INSTALL</h2>
 
-<pre>$ sudo gem install executable</pre>
+<pre>$ gem install executable</pre>
 
 <h2>LEGAL</h2>
 
