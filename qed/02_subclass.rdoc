@@ -1,0 +1,42 @@
+= Subclass Example
+
+Lets say we have a class that we would like to work with on
+the command line, but don't want to directly change the class
+itself via a mixin.
+
+  class Hello
+    attr_accessor :name
+
+    def initialize(name="World")
+      @name = name
+    end
+
+    def hello
+      @output = "Hello, #{name}!"
+    end
+
+    def output
+      @output
+    end
+  end
+
+Rather then including Exectuable in the class directly, we can
+create a subclass and use it instead.
+
+  class HelloCommand < Hello
+    include Executable
+
+    def main
+      hello
+    end
+  end
+
+Now we can execute the command perfectly well.
+
+  cmd = HelloCommand.new
+  rtn = cmd.execute_command('hello --name=Fred')
+
+  cmd.output.assert == "Hello, Fred!"
+
+And the original class remains undisturbed.
+

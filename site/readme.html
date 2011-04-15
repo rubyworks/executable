@@ -54,6 +54,12 @@ x.execute_command(&quot;butter yum&quot;)
 x.execute_command(&quot;bread --quiet&quot;)
 =&gt; [&quot;BREAD&quot;, true]</pre>
 
+<p>The only (minor) limitation of Executable, as opposed to other light-weight
+command-line parsers is the need to use an <tt>=</tt> sign when specifying
+options that take an argument, e.g.</p>
+
+<pre>x.execute_command(&quot;foo --name=example&quot;)</pre>
+
 <p>See RDocs for more information.</p>
 
 <h2>INSTALL</h2>

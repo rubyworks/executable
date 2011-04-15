@@ -52,6 +52,13 @@ Simply mixin Executable, then call #execute_command.
   x.execute_command("bread --quiet")
   => ["BREAD", true]
 
+
+The only (minor) limitation of Executable, as opposed to other light-weight
+command-line parsers is the need to use an <code>=</code> sign when specifying
+options that take an argument, e.g.
+
+  x.execute_command("foo --name=example")
+
 See RDocs for more information.
 
 
