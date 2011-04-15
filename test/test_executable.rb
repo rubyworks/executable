@@ -1,10 +1,9 @@
-require 'cliable'
-require 'test/unit'
+require 'executable'
 
-class TestCliable < Test::Unit::TestCase
+class TestExecutable < Test::Unit::TestCase
 
   class SampleCli
-    include Cliable
+    include Executable
 
     attr :result
 
@@ -21,7 +20,15 @@ class TestCliable < Test::Unit::TestCase
     end
   end
 
-  def test_parse
+  #
+  def test_parse_without_option
+    s = SampleCli.new
+    s.execute_command("jump")
+    assert_equal(s.result, ["jump"])
+  end
+
+  #
+  def test_parse_with_option
     s = SampleCli.new
     s.execute_command("jump --output=home")
     assert_equal(s.result, ['output: home', 'jump'])
