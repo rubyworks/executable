@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: CLI::MasterCommand</title>
+
+  
+    <link rel="SHORTCUT ICON" href="../assets/icon/class.png">
+  
+
+  <link type="text/css" rel="stylesheet" href="../assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="../assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="../assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="../assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind( "click", highlightClickTarget );
+    });
+  </script>
+</head>
+<body class="class">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="../assets/icon/class.png" align="absmiddle">&nbsp;
+      
+      <a href="../index.html">&quot;Executable&quot;</a>&nbsp;
+      <a href="/">CLI::MasterCommand</a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li class="file"><a href="../work/command-facets_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="work/command-facets.rb">work/command-facets.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          
+          <li class="class">Object</li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Namespace Contents -->
+      
+      <div id="namespace-list-section" class="section">
+        <h3 class="section-header">Namespace</h3>
+        <ul class="link-list">
+          
+          <li class="module"><a href="Command/UniversalOptions.html">CLI::Command::UniversalOptions</a></li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Method Quickref -->
+      
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+            
+            <li class="singleton">
+              <a href="#method-c-new">::new</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-option_arity">::option_arity</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-start">::start</a>
+            </li>
+          
+            
+            <li class="singleton">
+              <a href="#method-c-subcommand">::subcommand</a>
+            </li>
+          
+            
+            <li class="method">
+              <a href="#method-i-call">#call</a>
+            </li>
+          
+        </ul>
+      </div>
+      
+
+      <!-- Included Modules -->
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        
+          <li class="file"><a href="../work/deprecated/meta/released.html">released</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/collection.html">collection</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="../Version.html">Version</a></li>
+        
+          <li class="file"><a href="../Profile.html">Profile</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="../History_rdoc.html">History.rdoc</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/name.html">name</a></li>
+        
+          <li class="file"><a href="../meta/license/Apache2_txt.html">Apache2.txt</a></li>
+        
+          <li class="file"><a href="../Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/created.html">created</a></li>
+        
+          <li class="file"><a href="../README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="../log/stats/stats_txt.html">stats.txt</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/summary.html">summary</a></li>
+        
+          <li class="file"><a href="../Manifest_txt.html">Manifest.txt</a></li>
+        
+          <li class="file"><a href="../qed/03_example_rdoc.html">03_example.rdoc</a></li>
+        
+          <li class="file"><a href="../qed/02_subclass_rdoc.html">02_subclass.rdoc</a></li>
+        
+          <li class="file"><a href="../NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="../work/deprecated/meta/version.html">version</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="../assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        
+          <li class="module"><a href="../CLI.html">CLI</a></li>
+        
+          <li class="class"><a href="../CLI/Command.html">CLI::Command</a></li>
+        
+          <li class="module"><a href="../CLI/Command/UniversalOptions.html">CLI::Command::UniversalOptions</a></li>
+        
+          <li class="class"><a href="../CLI/Command.html">CLI::MasterCommand</a></li>
+        
+          <li class="class"><a href="../CLI/NoCommandError.html">CLI::NoCommandError</a></li>
+        
+          <li class="class"><a href="../CLI/NoOptionError.html">CLI::NoOptionError</a></li>
+        
+          <li class="module"><a href="../Console.html">Console</a></li>
+        
+          <li class="class"><a href="../Console/Command.html">Console::Command</a></li>
+        
+          <li class="class"><a href="../Console/MasterCommand.html">Console::MasterCommand</a></li>
+        
+          <li class="module"><a href="../Console/MasterCommand/UniversalOptions.html">Console::MasterCommand::UniversalOptions</a></li>
+        
+          <li class="class"><a href="../Console/NoCommandError.html">Console::NoCommandError</a></li>
+        
+          <li class="class"><a href="../Console/NoOptionError.html">Console::NoOptionError</a></li>
+        
+          <li class="class"><a href="../TestExecutable.html">TestExecutable</a></li>
+        
+          <li class="class"><a href="../TestExecutable/SampleCli.html">TestExecutable::SampleCli</a></li>
+        
+          <li class="class"><a href="../Array.html">Array</a></li>
+        
+          <li class="module"><a href="../Executable.html">Executable</a></li>
+        
+          <li class="class"><a href="../Hash.html">Hash</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="../assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/newfish">Newfish</a> 0.2.0
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      
+        <h1>MasterCommand</h1>
+      
+
+      
+<p>Here is an example of usage:</p>
+
+<pre># General Options
+
+module GeneralOptions
+  attr_writer :dryrun ; alias_writer :n, :noharm, :dryrun
+  attr_writer :quiet  ; alias_writer :q, :quiet
+  attr_writer :force
+  attr_writer :trace
+end
+
+# Build Subcommand
+
+class BuildCommand &lt; Command
+  include GeneralOptions
+
+  # metadata files
+  attr_writer  :file     ; alias_writer :f, :file
+  attr_writer  :manifest ; alias_writer :m, :manifest
+
+  def call
+    # do stuf here
+  end
+end
+
+# Box Master Command
+
+class BoxCommand &lt; CLI::Command
+  subcommand :build,     BuildCommand
+end
+
+BoxCommand.start</pre>
+
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="arguments-attribute-method" class="method-detail">
+        <a name="arguments"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">arguments</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Command.html">Command</a> Arguments (for single commands).</p>
+        
+        </div>
+      </div>
+      
+      <div id="options-attribute-method" class="method-detail">
+        <a name="options"></a>
+        
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">options</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        <p><a href="Command.html">Command</a> options. For dispatch commands these are
+the pre-options.</p>
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="new-method" class="method-detail ">
+        <a name="method-c-new"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">new</span><span
+            class="method-args">(*args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="new-source">
+<pre>
+<span class="ruby-comment"># File work/command-facets.rb, line 190</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-ivar">@arguments</span> = []
+  <span class="ruby-ivar">@options</span>   = {}
+
+  <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">args</span> = *<span class="ruby-identifier">args</span>.<span class="ruby-identifier">partition</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span> <span class="ruby-constant">Hash</span><span class="ruby-operator">===</span><span class="ruby-identifier">e</span> }
+  <span class="ruby-comment">#TEST(&quot;options should all be hashes&quot;){ ! opts.all?{ |e| Hash===e }</span>
+  <span class="ruby-identifier">initialize_arguments</span>(*<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">initialize_options</span>(*<span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="option_arity-method" class="method-detail ">
+        <a name="method-c-option_arity"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">option_arity</span><span
+            class="method-args">(arity_hash=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="option_arity-source">
+<pre>
+<span class="ruby-comment"># File work/command-facets.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">option_arity</span>(<span class="ruby-identifier">arity_hash</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-ivar">@option_arity</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">arity_hash</span>
+    <span class="ruby-ivar">@option_arity</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">arity_hash</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@option_arity</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="start-method" class="method-detail ">
+        <a name="method-c-start"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">start</span><span
+            class="method-args">(line=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code"
+            id="start-source">
+<pre>
+<span class="ruby-comment"># File work/command-facets.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">line</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">cargs</span> = <span class="ruby-constant">Arguments</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">line</span> <span class="ruby-operator">||</span> <span class="ruby-constant">ARGV</span>, <span class="ruby-identifier">option_arity</span>)
+  <span class="ruby-identifier">pre</span> = <span class="ruby-identifier">cargs</span>.<span class="ruby-identifier">preoptions</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">instance_method</span>(<span class="ruby-value">:call</span>).<span class="ruby-identifier">arity</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-comment">#is_a?(SingleCommand)</span>
+    <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = *<span class="ruby-identifier">cargs</span>.<span class="ruby-identifier">parameters</span>
+    <span class="ruby-identifier">new</span>(<span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>).<span class="ruby-identifier">call</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">subc</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = *<span class="ruby-identifier">cargs</span>.<span class="ruby-identifier">subcommand</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">UniversalOptions</span>
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">pre</span>, <span class="ruby-identifier">opts</span>).<span class="ruby-identifier">call</span>(<span class="ruby-identifier">subc</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">new</span>(<span class="ruby-identifier">pre</span>).<span class="ruby-identifier">call</span>(<span class="ruby-identifier">subc</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+      <div id="subcommand-method" class="method-detail ">
+        <a name="method-c-subcommand"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">subcommand</span><span
+            class="method-args">(name, command_class, options=nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>For dispatchers, this is a convenience method for creating subcommands.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="subcommand-source">
+<pre>
+<span class="ruby-comment"># File work/command-facets.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subcommand</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">command_class</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">options</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:no_merge</span>]
+    <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+    <span class="ruby-identifier">code</span> = <span class="ruby-node">%{
+      def #{name}(args, opts)
+        #{command_class}.new(args, opts).call
+      end
+    }</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span> = <span class="ruby-keyword">__FILE__</span>, <span class="ruby-keyword">__LINE__</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+    <span class="ruby-identifier">code</span> = <span class="ruby-node">%{
+      def #{name}(args, opts)
+        opts.merge(options)
+        #{command_class}.new(args, opts).call
+      end
+    }</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">class_eval</span>(<span class="ruby-identifier">code</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="call-method" class="method-detail ">
+        <a name="method-i-call"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">call</span><span
+            class="method-args">(cmd=nil, *args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>For a single command (ie. a subcommand) override <a
+href="Command.html#method-i-call">call</a> with arity=0.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="call-source">
+<pre>
+<span class="ruby-comment"># File work/command-facets.rb, line 226</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">cmd</span>=<span class="ruby-keyword">nil</span>, *<span class="ruby-identifier">args</span>)
+  <span class="ruby-identifier">opts</span> = <span class="ruby-constant">Hash</span><span class="ruby-operator">==</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
+  <span class="ruby-comment">#TEST(&quot;options should all be hashes&quot;){ ! opts.all?{ |e| Hash===e }</span>
+  <span class="ruby-comment">#cmd = :default if cmd.nil?</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">default</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">begin</span>
+      <span class="ruby-comment"># FIXME: rename call to [] ?</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NameError</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cmd</span> <span class="ruby-operator">==</span> <span class="ruby-string">'call'</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NameError</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">to_sym</span>)
+      <span class="ruby-identifier">subcommand</span> = <span class="ruby-identifier">method</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">parameters</span> = [<span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>]
+    <span class="ruby-keyword">rescue</span> <span class="ruby-constant">NameError</span>
+      <span class="ruby-identifier">subcommand</span> = <span class="ruby-identifier">method</span>(<span class="ruby-value">:command_missing</span>)
+      <span class="ruby-identifier">parameters</span> = [<span class="ruby-identifier">cmd</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span>]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">arity</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">call</span>(*<span class="ruby-identifier">parameters</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">arity</span>])
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">call</span>(*<span class="ruby-identifier">parameters</span>[<span class="ruby-value">0</span>,<span class="ruby-identifier">subcommand</span>.<span class="ruby-identifier">arity</span>])
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
+</body>
+</html>
+

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=<%= options.charset %>" http-equiv="Content-Type" />
+
+  <title><%= klass.type.capitalize %>: <%= klass.full_name %></title>
+
+  <% if klass.type == "class" %>
+    <link rel="SHORTCUT ICON" href="<%= rel_prefix %>/assets/icon/class.png">
+  <% else %>
+    <link rel="SHORTCUT ICON" href="<%= rel_prefix %>/assets/icon/module.png">
+  <% end %>
+
+  <link type="text/css" rel="stylesheet" href="<%= rel_prefix %>/assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="<%= rel_prefix %>/assets/highlight/styles/github.css" title="GitHub" />
+
+  <script type="text/javascript" charset="utf-8" src="<%= rel_prefix %>/assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="<%= rel_prefix %>/assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="<%= rel_prefix %>/assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="<%= rel_prefix %>/assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind( "click", highlightClickTarget );
+    });
+  </script>
+</head>
+<body class="<%= klass.type %>">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      <% if klass.type == "class" %>
+        <img src="<%= rel_prefix %>/assets/icon/class.png" align="absmiddle">&nbsp;
+      <% else %>
+        <img src="<%= rel_prefix %>/assets/icon/module.png" align="absmiddle">&nbsp;
+      <% end %>
+      <a href="<%= rel_prefix %>/index.html"><%= h title %></a>&nbsp;
+      <a href="/"><%= klass.full_name %></a>
+    </h1>
+  </div>
+
+  <div id="metadata">
+    <div id="project-metadata">
+
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          <% klass.in_files.each do |tl| %>
+            <li class="file"><a href="<%= rel_prefix %>/<%= h tl.path %>?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="<%= h tl.absolute_name %>"><%= h tl.absolute_name %></a></li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
+      <% if !svninfo(klass).empty? %>
+      <div id="file-svninfo-section" class="section">
+        <h3 class="section-header">Subversion Info</h3>
+        <div class="section-body">
+          <dl class="svninfo">
+            <dt>Rev</dt>
+            <dd><%= svninfo(klass)[:rev] %></dd>
+
+            <dt>Last Checked In</dt>
+            <dd><%= svninfo(klass)[:commitdate].strftime('%Y-%m-%d %H:%M:%S') %>
+              (<%= svninfo(klass)[:commitdelta] %> ago)</dd>
+
+            <dt>Checked in by</dt>
+            <dd><%= svninfo(klass)[:committer] %></dd>
+          </dl>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <div id="class-metadata">
+
+      <!-- Parent Class -->
+      <% if klass.type == 'class' %>
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        <ul>
+          <% unless String === klass.superclass %>
+          <!-- why was this class="link" ? -->
+          <li class="class"><a href="<%= klass.aref_to klass.superclass.path %>"><%= klass.superclass.full_name %></a></li>
+          <% else %>
+          <li class="class"><%= klass.superclass %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <!-- Namespace Contents -->
+      <% unless klass.classes_and_modules.empty? %>
+      <div id="namespace-list-section" class="section">
+        <h3 class="section-header">Namespace</h3>
+        <ul class="link-list">
+          <% (klass.modules.sort + klass.classes.sort).each do |mod| %>
+          <li class="<%= mod.type %>"><a href="<%= klass.aref_to mod.path %>"><%= mod.full_name %></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <!-- Method Quickref -->
+      <% unless klass.method_list.empty? %>
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          <% klass.each_method do |meth| %>
+            <% t = meth.singleton ? 'singleton' : 'method' %>
+            <li class="<%= t %>">
+              <a href="#<%= meth.aref %>"><%= meth.singleton ? '::' : '#' %><%= meth.name %></a>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <!-- Included Modules -->
+      <% unless klass.includes.empty? %>
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        <% klass.each_include do |inc| %>
+        <% unless String === inc.module %>
+          <li class="module"><a class="include" href="<%= klass.aref_to inc.module.path %>"><%= inc.module.full_name %></a></li>
+        <% else %>
+          <li class="module"><span class="include"><%= inc.name %></span></li>
+        <% end %>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+    </div>
+
+    <div id="project-metadata">
+      <% simple_files = files.select {|tl| tl.parser == RDoc::Parser::Simple } %>
+      <% unless simple_files.empty? then %>
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Information</h3>
+        <ul>
+        <% simple_files.each do |file| %>
+          <li class="file"><a href="<%= rel_prefix %>/<%= file.path %>"><%= h file.base_name %></a></li>
+        <% end %>
+        </ul>
+      </div>
+      <% end %>
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="<%= rel_prefix %>/assets/icon/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <!-- classpage.html : classes -->
+        <ul class="link-list">
+        <% classes_salient.each do |index_klass| %>
+          <li class="<%= index_klass.type %>"><a href="<%= rel_prefix %>/<%= index_klass.path %>"><%= index_klass.full_name %></a></li>
+        <% end %>
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+    </div>
+
+    <div id="validator-badges">
+      <% if $DEBUG_RDOC %>
+      <div id="debugging-toggle" style="float: right; margin-right: 5px;">
+        <img src="<%= rel_prefix %>/assets/icon/bug.png" alt="[Debug]" height="16" width="16" />
+      </div>
+      <% end %>
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="<%= rel_prefix %>/assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/newfish">Newfish</a> <%= RDoc::Generator::Newfish::VERSION %>
+      <br/><br/>
+    </div>
+  </div>
+
+  <div id="documentation">
+
+    <div id="description">
+      <% if /\s*\<h1\>/ !~ klass.description %>
+        <h1><%= klass.name %></h1>
+      <% end %>
+
+      <%= klass.description %>
+    </div>
+
+    <!-- Constants -->
+    <% unless klass.constants.empty? %>
+    <div id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      <% klass.each_constant do |const| %>
+        <dt><a name="<%= const.name %>"><%= const.name %></a></dt>
+        <% if const.comment %>
+        <dd class="description"><%= const.description.strip %></dd>
+        <% else %>
+        <dd class="description missing-docs">(Not documented)</dd>
+        <% end %>
+      <% end %>
+      </dl>
+    </div>
+    <% end %>
+
+    <!-- Attributes -->
+    <% unless klass.attributes.empty? %>
+    <div id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      <% klass.each_attribute do |attrib| %>
+      <div id="<%= attrib.html_name %>-attribute-method" class="method-detail">
+        <a name="<%= h attrib.name %>"></a>
+        <% if attrib.rw =~ /w/i %>
+        <a name="<%= h attrib.name %>="></a>
+        <% end %>
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name"><%= h attrib.name %></span><span
+            class="attribute-access-type">[<%= attrib.rw %>]</span>
+        </div>
+
+        <div class="method-description">
+        <% if attrib.comment %>
+        <%= attrib.description.strip %>
+        <% else %>
+        <p class="missing-docs">(Not documented)</p>
+        <% end %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+    <!-- Methods -->
+    <% klass.methods_by_type.each do |type, visibilities|
+       next if visibilities.empty?
+       visibilities.each do |visibility, methods|
+         next if methods.empty? %>
+    <div id="<%= visibility %>-<%= type %>-method-details" class="method-section section">
+      <h3 class="section-header"><%= visibility.to_s.capitalize %> <%= type.capitalize %> Methods</h3>
+
+    <% methods.each do |method| %>
+      <div id="<%= method.html_name %>-method" class="method-detail <%= method.is_alias_for ? "method-alias" : '' %>">
+        <a name="<%= h method.aref %>"></a>
+
+        <div class="method-heading">
+        <% if method.call_seq %>
+          <span class="method-callseq"><%= method.call_seq.strip.gsub(/->/, '&rarr;').gsub( /^\w.*?\./m, '') %></span>
+          <span class="method-click-advice">click to toggle source</span>
+        <% else %>
+          <span class="method-name"><%= h method.name %></span><span
+            class="method-args"><%= method.params %></span>
+          <span class="method-click-advice">click to toggle source</span>
+        <% end %>
+        </div>
+
+        <div class="method-description">
+          <% if method.comment %>
+          <%= method.description.strip %>
+          <% else %>
+          <p class="missing-docs">(Not documented)</p>
+          <% end %>
+
+          <% if method.token_stream %>
+          <div class="method-source-code"
+            id="<%= method.html_name %>-source">
+<pre>
+<%= method.markup_code %>
+</pre>
+          </div>
+          <% end %>
+        </div>
+
+        <% unless method.aliases.empty? %>
+        <div class="aliases">
+          Also aliased as: <%= method.aliases.map do |aka|
+            %{<a href="#{ klass.aref_to aka.path}">#{h aka.name}</a>}
+          end.join(", ") %>
+        </div>
+        <% end %>
+      </div>
+
+    <% end %>
+    </div>
+  <% end
+     end %>
+
+  </div>
+
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  <% if $DEBUG_RDOC
+       require 'pp' %>
+<pre><%= h PP.pp(klass, _erbout) %></pre>
+    </div>
+  <% else %>
+    <p>Disabled; run with --debug to generate this.</p>
+  <% end %>
+  </div>
+
+</main>
+</body>
+</html>
+

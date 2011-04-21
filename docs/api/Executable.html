@@ -1,80 +1,127 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
   <title>Module: Executable</title>
 
-  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+  
+    <link rel="SHORTCUT ICON" href="./assets/icon/module.png">
+  
 
-  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
-  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+  <link type="text/css" rel="stylesheet" href="./assets/rdoc.css" media="screen" />
+  <link type="text/css" rel="stylesheet" href="./assets/highlight/styles/github.css" title="GitHub" />
 
+  <script type="text/javascript" charset="utf-8" src="./assets/jquery.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/quicksearch.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./assets/main.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $('#documentation pre').wrapInner('<code></code>');
+      hljs.tabReplace = '    ';
+      hljs.initHighlightingOnLoad('ruby');
+
+	    hookSourceViews();
+	    hookDebuggingToggle();
+	    hookQuickSearch();
+	    highlightLocationTarget();
+
+	    $('ul.link-list a').bind( "click", highlightClickTarget );
+    });
+  </script>
 </head>
-<body id="top" class="module">
+<body class="module">
+<div id="main">
+
+  <div class="head">
+    <h1>
+      
+        <img src="./assets/icon/module.png" align="absmiddle">&nbsp;
+      
+      <a href="./index.html">&quot;Executable&quot;</a>&nbsp;
+      <a href="/">Executable</a>
+    </h1>
+  </div>
 
   <div id="metadata">
-    <div id="home-metadata">
-      <div id="home-section" class="section">
-        <h3 class="section-header">
-          <a href="./index.html">Home</a>
-          <a href="./index.html#classes">Classes</a>
-          <a href="./index.html#methods">Methods</a>
-        </h3>
-      </div>
-    </div>
+    <div id="project-metadata">
 
-    <div id="file-metadata">
       <div id="file-list-section" class="section">
         <h3 class="section-header">In Files</h3>
         <div class="section-body">
           <ul>
           
-            <li><a href="./lib/executable_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+            <li class="file"><a href="./lib/executable_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
               class="thickbox" title="lib/executable.rb">lib/executable.rb</a></li>
           
           </ul>
         </div>
       </div>
 
+      <!-- What about Git info, or Hg info? This seems almost silly, albeit kind of cool. -->
+      <!-- TODO: generalize this for all SCMs -->
+
       
     </div>
 
     <div id="class-metadata">
+
+      <!-- Parent Class -->
       
 
+      <!-- Namespace Contents -->
       
 
-      
-
-      
       <!-- Method Quickref -->
+      
       <div id="method-list-section" class="section">
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-c-execute">::execute</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-execute">::execute</a>
+            </li>
           
-          <li><a href="#method-c-parse">::parse</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-parse">::parse</a>
+            </li>
           
-          <li><a href="#method-c-parse_equal">::parse_equal</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-parse_equal">::parse_equal</a>
+            </li>
           
-          <li><a href="#method-c-parse_flags">::parse_flags</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-parse_flags">::parse_flags</a>
+            </li>
           
-          <li><a href="#method-c-parse_option">::parse_option</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-parse_option">::parse_option</a>
+            </li>
           
-          <li><a href="#method-c-run">::run</a></li>
+            
+            <li class="singleton">
+              <a href="#method-c-run">::run</a>
+            </li>
           
-          <li><a href="#method-i-execute-21">#execute!</a></li>
+            
+            <li class="method">
+              <a href="#method-i-execute-21">#execute!</a>
+            </li>
           
         </ul>
       </div>
       
 
+      <!-- Included Modules -->
       
     </div>
 
@@ -82,26 +129,60 @@
       
       
       <div id="fileindex-section" class="section project-section">
-        <h3 class="section-header">Files</h3>
+        <h3 class="section-header">Information</h3>
         <ul>
         
-          <li class="file"><a href="./History_rdoc.html">History.rdoc</a></li>
+          <li class="file"><a href="./work/deprecated/meta/released.html">released</a></li>
         
-          <li class="file"><a href="./NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+          <li class="file"><a href="./work/deprecated/meta/collection.html">collection</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/repository.html">repository</a></li>
+        
+          <li class="file"><a href="./Version.html">Version</a></li>
         
           <li class="file"><a href="./Profile.html">Profile</a></li>
         
+          <li class="file"><a href="./work/deprecated/meta/license.html">license</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/homepage.html">homepage</a></li>
+        
+          <li class="file"><a href="./History_rdoc.html">History.rdoc</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/name.html">name</a></li>
+        
+          <li class="file"><a href="./meta/license/Apache2_txt.html">Apache2.txt</a></li>
+        
+          <li class="file"><a href="./Rakefile.html">Rakefile</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/created.html">created</a></li>
+        
           <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
         
-          <li class="file"><a href="./Version.html">Version</a></li>
+          <li class="file"><a href="./work/deprecated/meta/description.html">description</a></li>
+        
+          <li class="file"><a href="./log/stats/stats_txt.html">stats.txt</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/summary.html">summary</a></li>
+        
+          <li class="file"><a href="./Manifest_txt.html">Manifest.txt</a></li>
+        
+          <li class="file"><a href="./qed/03_example_rdoc.html">03_example.rdoc</a></li>
+        
+          <li class="file"><a href="./qed/02_subclass_rdoc.html">02_subclass.rdoc</a></li>
+        
+          <li class="file"><a href="./NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/authors.html">authors</a></li>
+        
+          <li class="file"><a href="./work/deprecated/meta/version.html">version</a></li>
         
         </ul>
       </div>
       
 
       <div id="classindex-section" class="section project-section">
-        <h3 class="section-header">Class/Module Index
-          <span class="search-toggle"><img src="./images/find.png"
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./assets/icon/find.png"
             height="16" width="16" alt="[+]"
             title="show/hide quicksearch" /></span></h3>
         <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
@@ -112,22 +193,63 @@
         </fieldset>
         </form>
 
+        <!-- classpage.html : classes -->
         <ul class="link-list">
         
-          <li><a href="./Executable.html">Executable</a></li>
+          <li class="module"><a href="./CLI.html">CLI</a></li>
+        
+          <li class="class"><a href="./CLI/Command.html">CLI::Command</a></li>
+        
+          <li class="module"><a href="./CLI/Command/UniversalOptions.html">CLI::Command::UniversalOptions</a></li>
+        
+          <li class="class"><a href="./CLI/Command.html">CLI::MasterCommand</a></li>
+        
+          <li class="class"><a href="./CLI/NoCommandError.html">CLI::NoCommandError</a></li>
+        
+          <li class="class"><a href="./CLI/NoOptionError.html">CLI::NoOptionError</a></li>
+        
+          <li class="module"><a href="./Console.html">Console</a></li>
+        
+          <li class="class"><a href="./Console/Command.html">Console::Command</a></li>
+        
+          <li class="class"><a href="./Console/MasterCommand.html">Console::MasterCommand</a></li>
+        
+          <li class="module"><a href="./Console/MasterCommand/UniversalOptions.html">Console::MasterCommand::UniversalOptions</a></li>
+        
+          <li class="class"><a href="./Console/NoCommandError.html">Console::NoCommandError</a></li>
+        
+          <li class="class"><a href="./Console/NoOptionError.html">Console::NoOptionError</a></li>
+        
+          <li class="class"><a href="./TestExecutable.html">TestExecutable</a></li>
+        
+          <li class="class"><a href="./TestExecutable/SampleCli.html">TestExecutable::SampleCli</a></li>
+        
+          <li class="class"><a href="./Array.html">Array</a></li>
+        
+          <li class="module"><a href="./Executable.html">Executable</a></li>
+        
+          <li class="class"><a href="./Hash.html">Hash</a></li>
         
         </ul>
         <div id="no-class-search-results" style="display: none;">No matching classes.</div>
       </div>
+    </div>
 
+    <div id="validator-badges">
       
+      <div style="float: right; margin-right: 5px;">
+        <a href="http://validator.w3.org/check/referer"><img src="./assets/icon/check.png" alt="[Validate]" height="16" width="16" /></a>
+      </div>
+      Generated with <a href="http://rubyworks.github.com/newfish">Newfish</a> 0.2.0
+      <br/><br/>
     </div>
   </div>
 
   <div id="documentation">
-    <h1 class="module">Executable</h1>
 
-    <div id="description" class="description">
+    <div id="description">
+      
+
       
 <h1><a href="Executable.html">Executable</a> Mixin</h1>
 
@@ -166,42 +288,39 @@ ex.execute!(&quot;bread --quiet&quot;)
 which you can overriden to provide suitable results when a given command
 line option has no corresponding  writer method.</p>
 
-    </div><!-- description -->
+    </div>
+
+    <!-- Constants -->
+    
+
+    <!-- Attributes -->
+    
+
+    <!-- Methods -->
+    
+    <div id="public-class-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
     
-    <div id="5Buntitled-5D" class="documentation-section">
-      
+      <div id="execute-method" class="method-detail ">
+        <a name="method-c-execute"></a>
 
-      
+        <div class="method-heading">
+        
+          <span class="method-name">execute</span><span
+            class="method-args">(obj, argv=ARGV)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
 
-      
-
-      
-
-      <!-- Methods -->
-      
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
-
-      
-        <div id="execute-method" class="method-detail ">
-          <a name="method-c-execute"></a>
-
+        <div class="method-description">
           
-          <div class="method-heading">
-            <span class="method-name">execute</span><span
-              class="method-args">(obj, argv=ARGV)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+          <p>Process the arguments as an exectuable against the given object.</p>
           
 
-          <div class="method-description">
-            
-            <p>Process the arguments as an exectuable against the given object.</p>
-            
-
-            
-            <div class="method-source-code" id="execute-source">
+          
+          <div class="method-source-code"
+            id="execute-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">argv</span>=<span class="ruby-constant">ARGV</span>)
@@ -213,38 +332,37 @@ line option has no corresponding  writer method.</p>
     <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">method_missing</span>(*<span class="ruby-identifier">args</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- execute-source -->
-            
-          </div>
-
-          
-          <div class="aliases">
-            Also aliased as: <a href="Executable.html#method-c-run">run</a>
           </div>
           
+        </div>
+
+        
+        <div class="aliases">
+          Also aliased as: <a href="Executable.html#method-c-run">run</a>
+        </div>
+        
+      </div>
+
+    
+      <div id="parse-method" class="method-detail ">
+        <a name="method-c-parse"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse</span><span
+            class="method-args">(obj, argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Parse command line with respect to <tt>obj</tt>.</p>
+          
 
           
-        </div><!-- execute-method -->
-
-      
-        <div id="parse-method" class="method-detail ">
-          <a name="method-c-parse"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">parse</span><span
-              class="method-args">(obj, argv)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Parse command line with respect to <tt>obj</tt>.</p>
-            
-
-            
-            <div class="method-source-code" id="parse-source">
+          <div class="method-source-code"
+            id="parse-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">argv</span>)
@@ -272,34 +390,33 @@ line option has no corresponding  writer method.</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">return</span> <span class="ruby-identifier">args</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- parse-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- parse-method -->
-
-      
-        <div id="parse_equal-method" class="method-detail ">
-          <a name="method-c-parse_equal"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">parse_equal</span><span
-              class="method-args">(obj, opt, argv)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Parse a setting option.</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="parse_equal-source">
+    
+      <div id="parse_equal-method" class="method-detail ">
+        <a name="method-c-parse_equal"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_equal</span><span
+            class="method-args">(obj, opt, argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Parse a setting option.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="parse_equal-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_equal</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>)
@@ -315,30 +432,28 @@ line option has no corresponding  writer method.</p>
   <span class="ruby-comment">#  obj.option_missing(x, v)</span>
   <span class="ruby-comment">#end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- parse_equal-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- parse_equal-method -->
-
-      
-        <div id="parse_flags-method" class="method-detail ">
-          <a name="method-c-parse_flags"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">parse_flags</span><span
-              class="method-args">(obj, opt, args)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Parse flags. Each character of a flag set is treated as a separate option.
+        
+      </div>
+
+    
+      <div id="parse_flags-method" class="method-detail ">
+        <a name="method-c-parse_flags"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_flags</span><span
+            class="method-args">(obj, opt, args)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Parse flags. Each character of a flag set is treated as a separate option.
 For example:</p>
 
 <pre>$ foo -abc</pre>
@@ -346,10 +461,11 @@ For example:</p>
 <p>Would be parsed the same as:</p>
 
 <pre>$ foo -a -b -c</pre>
-            
+          
 
-            
-            <div class="method-source-code" id="parse_flags-source">
+          
+          <div class="method-source-code"
+            id="parse_flags-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_flags</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">args</span>)
@@ -363,34 +479,33 @@ For example:</p>
     <span class="ruby-comment">#end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- parse_flags-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- parse_flags-method -->
-
-      
-        <div id="parse_option-method" class="method-detail ">
-          <a name="method-c-parse_option"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">parse_option</span><span
-              class="method-args">(obj, opt, argv)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>Parse a named boolean option.</p>
-            
+        
+      </div>
 
-            
-            <div class="method-source-code" id="parse_option-source">
+    
+      <div id="parse_option-method" class="method-detail ">
+        <a name="method-c-parse_option"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">parse_option</span><span
+            class="method-args">(obj, opt, argv)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Parse a named boolean option.</p>
+          
+
+          
+          <div class="method-source-code"
+            id="parse_option-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">parse_option</span>(<span class="ruby-identifier">obj</span>, <span class="ruby-identifier">opt</span>, <span class="ruby-identifier">argv</span>)
@@ -401,97 +516,88 @@ For example:</p>
   <span class="ruby-comment">#  obj.option_missing(x, true)</span>
   <span class="ruby-comment">#end</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- parse_option-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- parse_option-method -->
-
-      
-        <div id="run-method" class="method-detail method-alias">
-          <a name="method-c-run"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">run</span><span
-              class="method-args">(obj, argv=ARGV)</span>
-            <span class="method-click-advice">click to toggle source</span>
           </div>
           
+        </div>
 
-          <div class="method-description">
-            
-            <p>The original name for #execute.</p>
-            
+        
+      </div>
 
-            
-          </div>
-
-          
-
-          
-          <div class="aliases">
-            Alias for: <a href="Executable.html#method-c-execute">execute</a>
-          </div>
-          
-        </div><!-- run-method -->
-
-      
-      </div><!-- public-class-method-details -->
     
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+      <div id="run-method" class="method-detail method-alias">
+        <a name="method-c-run"></a>
 
-      
-        <div id="execute-21-method" class="method-detail ">
-          <a name="method-i-execute-21"></a>
+        <div class="method-heading">
+        
+          <span class="method-name">run</span><span
+            class="method-args">(obj, argv=ARGV)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>The original name for #execute.</p>
+          
 
           
-          <div class="method-heading">
-            <span class="method-name">execute!</span><span
-              class="method-args">(argv=ARGV)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
+        </div>
+
+        
+      </div>
+
+    
+    </div>
+  
+    <div id="public-instance-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="execute-21-method" class="method-detail ">
+        <a name="method-i-execute-21"></a>
+
+        <div class="method-heading">
+        
+          <span class="method-name">execute!</span><span
+            class="method-args">(argv=ARGV)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        
+        </div>
+
+        <div class="method-description">
+          
+          <p>Used the #excute! method to invoke the command.</p>
           
 
-          <div class="method-description">
-            
-            <p>Used the #excute! method to invoke the command.</p>
-            
-
-            
-            <div class="method-source-code" id="execute-21-source">
+          
+          <div class="method-source-code"
+            id="execute-21-source">
 <pre>
 <span class="ruby-comment"># File lib/executable.rb, line 40</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">execute!</span>(<span class="ruby-identifier">argv</span>=<span class="ruby-constant">ARGV</span>)
   <span class="ruby-constant">Executable</span>.<span class="ruby-identifier">execute</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">argv</span>)
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- execute-21-source -->
-            
           </div>
-
           
+        </div>
 
-          
-        </div><!-- execute-21-method -->
+        
+      </div>
 
-      
-      </div><!-- public-instance-method-details -->
     
-    </div><!-- 5Buntitled-5D -->
+    </div>
   
 
-  </div><!-- documentation -->
-
-  <div id="validator-badges">
-    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
-    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
-      Rdoc Generator</a> 2</small>.</p>
   </div>
 
+
+  <div id="rdoc-debugging-section-dump" class="debugging-section">
+  
+    <p>Disabled; run with --debug to generate this.</p>
+  
+  </div>
+
+</main>
 </body>
 </html>
 
