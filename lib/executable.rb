@@ -1,90 +1,68 @@
 # = Executable Mixin
 #
-# The Executable mixin is a very quick and and easy
-# way to make almost any class usable via a command
-# line interface. It simply uses writer methods as
-# option setters, and the first command line argument
-# as the method to call, with the subsequent arguments
-# passed to the method.
+# The Executable mixin is a very quick and and easy way to make almost
+# any class usable via a command line interface. It simply uses writer
+# methods as option setters, and the first command line argument as a
+# method to call with the subsequent arguments passed to the method.
 #
-# The only limitation of this approach (besides the weak
-# control of the process) is that required options must
-# be specified with the key=value notation.
+# The only limitation of this approach is that non-boolean options must
+# be specified with `key=value` notation.
 #
-#   class X
+#   class Example
 #     include Executable
 #
 #     attr_accessor :quiet
 #
 #     def bread(*args)
-#       ["BREAD", quiet, *args]
+#       ["bread", quiet, *args]
 #     end
 #
 #     def butter(*args)
-#       ["BUTTER", quiet, *args]
+#       ["butter", quiet, *args]
 #     end
 #   end
 #
-#   x = X.new
+#   x = Example.new
 #
 #   x.execute_command("butter yum")
-#   => ["BUTTER", nil, "yum"]
+#   => ["butter", nil, "yum"]
 #
 #   x.execute_command("bread --quiet")
-#   => ["BUTTER", true]
+#   => ["butter", true]
 #
-# Executable also defines #command_missing and #option_missing,
-# which you can override to provide suitable results.
-#
-# TODO: Maybe command_missing is redundant, and method_missing would suffice?
+# Executable also provides #option_missing, which you can overriden to provide
+# suitable results when a given command line option has no corresponding 
+# writer method.
 #
 module Executable
-
-  class NoCommandError < NameError
-  end
-
-  class NoOptionError < ArgumentError
-  end
 
   # Used to invoke the command.
   def execute_command(argv=ARGV)
     Executable.run(self, argv)
   end
 
-  # This is the fallback subcommand. Override this to provide
-  # a fallback when no command is given on the commandline.
-  def command_missing
-    raise NoCommandError
-  end
-
-  # Override option_missing if needed.
-  # This receives the name of the option and
-  # the remaining arguments list. It must consume
-  # any argument it uses from the (begining of)
-  # the list.
-  def option_missing(opt, *argv)
-    raise NoOptionError, opt
+  # When no attribute write exists for an option that has been given on
+  # the command line #option_missing is called. Override #option_missing
+  # to handle these cases, if needed. Otherwise a NoMethodArgument will be
+  # raised. This callback method receives the name and value of the option.
+  def option_missing(opt, arg)
+    raise NoMethodError, "undefined option `#{opt}=' for #{self}"
   end
 
   class << self
 
+    # 
     def run(obj, argv=ARGV)
-      args = parse(obj, argv)
-      subcmd = args.shift
+      args   = parse(obj, argv)
+      subcmd = args.first
       if subcmd && !obj.respond_to?("#{subcmd}=")
-        obj.send(subcmd, *args)
+        obj.send(*args)
       else
-        obj.command_missing
+        obj.method_missing(*args)
       end
     end
 
-    #def run(obj)
-    #  methname, args = *parse(obj)
-    #  meth = obj.method(methname)
-    #  meth.call(*args)
-    #end
-
-    #
+    # Parse command line with respect to +obj+.
     def parse(obj, argv)
       case argv
       when String
@@ -111,7 +89,7 @@ module Executable
       return args
     end
 
-    #
+    # Parse a setting option.
     def parse_equal(obj, opt, argv)
       if md = /^[-]*(.*?)=(.*?)$/.match(opt)
         x, v = md[1], md[2]
@@ -120,31 +98,39 @@ module Executable
       end
       if obj.respond_to?("#{x}=")
         # TODO: to_b if 'true' or 'false' ?
-        obj.send("#{x}=",v)
+        obj.send("#{x}=", v)
       else
-        obj.option_missing(x, v) # argv?
+        obj.option_missing(x, v)
       end
     end
 
-    #
+    # Parse a named boolean option.
     def parse_option(obj, opt, argv)
       x = opt[2..-1]
       if obj.respond_to?("#{x}=")
-        obj.send("#{x}=",true)
+        obj.send("#{x}=", true)
       else
-        obj.option_missing(x, argv)
+        obj.option_missing(x, true)
       end
     end
 
+    # Parse flags. Each character of a flag set is treated as a separate option.
+    # For example:
+    #
+    #   $ foo -abc
+    #
+    # Would be parsed the same as:
+    #
+    #   $ foo -a -b -c
     #
     def parse_flags(obj, opt, args)
       x = opt[1..-1]
       c = 0
       x.split(//).each do |k|
         if obj.respond_to?("#{k}=")
-          obj.send("#{k}=",true)
+          obj.send("#{k}=", true)
         else
-          obj.option_missing(x, argv)
+          obj.option_missing(x, true)
         end
       end
     end
@@ -152,43 +138,3 @@ module Executable
   end #class << self
 
 end
-
-
-=begin SPEC
-
-class X
-  include Executable
-
-  attr_accessor :file
-  attr_accessor :quiet
-
-  attr :cmd
-
-  #
-  def bread(*args)
-    @cmd = "BREAD"
-  end
-
-  #
-  def butter(*args)
-    @cmd = "BUTTER"
-  end
-end
-
-Respect.spec "Executable" do
-
-  it "first command runs" do
-    x = X.new
-    x.execute_command("bread")
-    x.cmd.assert == "BREAD"
-  end
-
-  it "second command runs" do
-    x = X.new
-    x.execute_command("butter")
-    x.cmd.assert == "BUTTER"
-  end
-end
-
-=end
-
