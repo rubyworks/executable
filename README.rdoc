@@ -61,12 +61,12 @@ Notice that Executable requires an equal-sign (<code>=</code>) be used
 when specifying values for non-boolean attributes.
 
 To make the command available on the command line, add an executable
-to your project passing ARGV to the #execute_command method.
+to your project passing ARGV to the #execute! method.
 
   #!usr/bin/env ruby
   require 'x'
   x = X.new
-  x.execute_command(ARGV)
+  x.execute!(ARGV)
 
 
 == INSTALL
