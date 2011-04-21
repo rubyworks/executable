@@ -13,11 +13,11 @@ passed to the method.
 == FEATURES
 
 * Super easy to use, just mixin.
-* Public writters become CLI options.
+* Public writers become options.
 * Public methods become subcommands.
 
 
-== RESORUCES
+== RESOURCES
 
 * http://rubyworks.github.com/executable
 * http://github.com/rubyworks/executable
@@ -60,12 +60,13 @@ Simply mixin Executable, then call #execute_command.
 Notice that Executable requires an equal-sign (<code>=</code>) be used
 when specifying values for non-boolean attributes.
 
-To make the command available on the comamnd line, add an executable
+To make the command available on the command line, add an executable
 to your project passing ARGV to the #execute_command method.
 
   #!usr/bin/env ruby
   require 'x'
-  X.execute_command(ARGV)
+  x = X.new
+  x.execute_command(ARGV)
 
 
 == INSTALL
