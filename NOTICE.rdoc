@@ -1,6 +1,6 @@
 = COPYRIGHT NOTICES
 
-Executable
+== Executable
 
 Copyright (c) 2009 Thomas Sawyer
 
