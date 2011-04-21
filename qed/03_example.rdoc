@@ -1,0 +1,31 @@
+= Example
+
+This is the example used in the documentation.
+
+   class Example
+     include Executable
+
+     attr_accessor :quiet
+
+     def bread(*args)
+       ["bread", quiet, *args]
+     end
+
+     def butter(*args)
+       ["butter", quiet, *args]
+     end
+   end
+
+Use a subcommand and an argument.
+
+   x = X.new
+   r = x.execute_command("butter yum")
+   r.assert == ["butter", nil, "yum"]
+
+
+A subcommand and a boolean option.
+
+   x = X.new
+   r = x.execute_command("bread --quiet")
+   r.assert == ["bread", true]
+

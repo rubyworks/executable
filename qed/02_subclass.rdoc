@@ -1,8 +1,8 @@
 = Subclass Example
 
 Lets say we have a class that we would like to work with on
-the command line, but don't want to directly change the class
-itself via a mixin.
+the command line, but want to keep the class itself unchanaged
+without mixin.
 
   class Hello
     attr_accessor :name

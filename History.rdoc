@@ -1,4 +1,22 @@
-= HISTORY
+= RELEASE HISTORY
+
+== 1.1.0 / 2011-04-21
+
+This release simplifies Exectuable a bit, removing the special error class
+NoOptionError and using the standard NoMthodError in it's stay, and fixes
+an issue with inconsistant arguments being passed to the #option_missing
+callback.
+
+Changes:
+
+* Deprecations
+
+  * NoOptionError removed in favor of standard NoMethodError.
+
+* Bug Fixes
+
+  * The #option_missing method takes the value of the argument set.
+
 
 == 1.0.0 / 2011-04-15
 
