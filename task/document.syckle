@@ -28,3 +28,10 @@ end
 #  active false
 #end
 
+custom "qedoc" do
+  cycle "site"
+  document %{
+    system "qedoc -o site/docs/qed -t Executable qed/"
+  }
+end
+
