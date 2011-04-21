@@ -1,13 +1,13 @@
 --- !ruby/object:Gem::Specification 
 name: executable
 version: !ruby/object:Gem::Version 
-  hash: 23
-  prerelease: 
+  hash: 19
+  prerelease: false
   segments: 
   - 1
+  - 1
   - 0
-  - 0
-  version: 1.0.0
+  version: 1.1.0
 platform: ruby
 authors: 
 - Thomas Sawyer
@@ -15,7 +15,8 @@ autorequire:
 bindir: bin
 cert_chain: []
 
-date: 2011-04-15 00:00:00 Z
+date: 2011-04-21 00:00:00 -04:00
+default_executable: 
 dependencies: 
 - !ruby/object:Gem::Dependency 
   name: turn
@@ -38,15 +39,17 @@ executables: []
 extensions: []
 
 extra_rdoc_files: 
-- README
+- README.rdoc
 files: 
 - lib/executable.rb
+- meta/license/Apache2.txt
 - test/test_executable.rb
-- Rakefile
-- PROFILE
-- LICENSE
-- README
-- HISTORY
+- Profile
+- README.rdoc
+- History.rdoc
+- Version
+- NOTICE.rdoc
+has_rdoc: true
 homepage: http://rubyworks.github.com/executable
 licenses: 
 - Apache 2.0
@@ -55,7 +58,7 @@ rdoc_options:
 - --title
 - Executable API
 - --main
-- README
+- README.rdoc
 require_paths: 
 - lib
 required_ruby_version: !ruby/object:Gem::Requirement 
@@ -79,7 +82,7 @@ required_rubygems_version: !ruby/object:Gem::Requirement
 requirements: []
 
 rubyforge_project: executable
-rubygems_version: 1.7.2
+rubygems_version: 1.3.7
 signing_key: 
 specification_version: 3
 summary: Any class, a command-line interface.

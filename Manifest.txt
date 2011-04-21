@@ -1,8 +1,9 @@
 #!mast -x Rakefile lib meta test [A-Z]*
 lib/executable.rb
+meta/license/Apache2.txt
 test/test_executable.rb
-PROFILE
-LICENSE
+Profile
 README.rdoc
-HISTORY
-VERSION
+History.rdoc
+Version
+NOTICE.rdoc
