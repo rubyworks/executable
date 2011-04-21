@@ -22,12 +22,12 @@
 #     end
 #   end
 #
-#   x = Example.new
+#   ex = Example.new
 #
-#   x.execute_command("butter yum")
+#   ex.execute!("butter yum")
 #   => ["butter", nil, "yum"]
 #
-#   x.execute_command("bread --quiet")
+#   ex.execute!("bread --quiet")
 #   => ["butter", true]
 #
 # Executable also provides #option_missing, which you can overriden to provide
@@ -36,23 +36,23 @@
 #
 module Executable
 
-  # Used to invoke the command.
-  def execute_command(argv=ARGV)
-    Executable.run(self, argv)
+  # Used the #excute! method to invoke the command.
+  def execute!(argv=ARGV)
+    Executable.execute(self, argv)
   end
 
-  # When no attribute write exists for an option that has been given on
-  # the command line #option_missing is called. Override #option_missing
-  # to handle these cases, if needed. Otherwise a NoMethodArgument will be
-  # raised. This callback method receives the name and value of the option.
-  def option_missing(opt, arg)
-    raise NoMethodError, "undefined option `#{opt}=' for #{self}"
-  end
+  ## When no attribute write exists for an option that has been given on
+  ## the command line #option_missing is called. Override #option_missing
+  ## to handle these cases, if needed. Otherwise a NoMethodArgument will be
+  ## raised. This callback method receives the name and value of the option.
+  #def option_missing(opt, arg)
+  #  raise NoMethodError, "undefined option `#{opt}=' for #{self}"
+  #end
 
   class << self
 
-    # 
-    def run(obj, argv=ARGV)
+    # Process the arguments as an exectuable against the given object.
+    def execute(obj, argv=ARGV)
       args   = parse(obj, argv)
       subcmd = args.first
       if subcmd && !obj.respond_to?("#{subcmd}=")
@@ -61,6 +61,9 @@ module Executable
         obj.method_missing(*args)
       end
     end
+
+    # The original name for #execute.
+    alias_method :run, :execute
 
     # Parse command line with respect to +obj+.
     def parse(obj, argv)
@@ -96,22 +99,22 @@ module Executable
       else
         raise ArgumentError, "#{x}"
       end
-      if obj.respond_to?("#{x}=")
-        # TODO: to_b if 'true' or 'false' ?
+      # TODO: to_b if 'true' or 'false' ?
+      #if obj.respond_to?("#{x}=")
         obj.send("#{x}=", v)
-      else
-        obj.option_missing(x, v)
-      end
+      #else
+      #  obj.option_missing(x, v)
+      #end
     end
 
     # Parse a named boolean option.
     def parse_option(obj, opt, argv)
-      x = opt[2..-1]
-      if obj.respond_to?("#{x}=")
+      x = opt.sub(/^--/, '')
+      #if obj.respond_to?("#{x}=")
         obj.send("#{x}=", true)
-      else
-        obj.option_missing(x, true)
-      end
+      #else
+      #  obj.option_missing(x, true)
+      #end
     end
 
     # Parse flags. Each character of a flag set is treated as a separate option.
@@ -124,14 +127,14 @@ module Executable
     #   $ foo -a -b -c
     #
     def parse_flags(obj, opt, args)
-      x = opt[1..-1]
-      c = 0
+      x = opt.sub(/^-/, '')
+      #c = 0
       x.split(//).each do |k|
-        if obj.respond_to?("#{k}=")
+        #if obj.respond_to?("#{k}=")
           obj.send("#{k}=", true)
-        else
-          obj.option_missing(x, true)
-        end
+        #else
+        #  obj.option_missing(x, true)
+        #end
       end
     end
 

@@ -40,21 +40,21 @@ Simply mixin Executable, then call #execute_command.
     attr_accessor :size
 
     def bread(*args)
-      ["BREAD", quiet, size, *args]
+      ["bread", quiet, size, *args]
     end
 
     def butter(*args)
-      ["BUTTER", quiet, size, *args]
+      ["butter", quiet, size, *args]
     end
   end
 
   x = X.new
 
-  x.execute_command("butter yum")
-  => ["BUTTER", nil, nil, "yum"]
+  x.execute!("butter yum")
+  => ["butter", nil, nil, "yum"]
 
-  x.execute_command("bread --quiet --size=big")
-  => ["BREAD", true, "big"]
+  x.execute!("bread --quiet --size=big")
+  => ["bread", true, "big"]
 
 
 Notice that Executable requires an equal-sign (<code>=</code>) be used

@@ -18,14 +18,14 @@ This is the example used in the documentation.
 
 Use a subcommand and an argument.
 
-   x = X.new
-   r = x.execute_command("butter yum")
+   x = Example.new
+   r = x.execute!("butter yum")
    r.assert == ["butter", nil, "yum"]
 
 
 A subcommand and a boolean option.
 
-   x = X.new
-   r = x.execute_command("bread --quiet")
+   x = Example.new
+   r = x.execute!("bread --quiet")
    r.assert == ["bread", true]
 

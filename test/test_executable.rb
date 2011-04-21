@@ -23,14 +23,14 @@ class TestExecutable < Test::Unit::TestCase
   #
   def test_parse_without_option
     s = SampleCli.new
-    s.execute_command("jump")
+    s.execute!("jump")
     assert_equal(s.result, ["jump"])
   end
 
   #
   def test_parse_with_option
     s = SampleCli.new
-    s.execute_command("jump --output=home")
+    s.execute!("jump --output=home")
     assert_equal(s.result, ['output: home', 'jump'])
   end
 

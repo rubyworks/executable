@@ -34,7 +34,7 @@ create a subclass and use it instead.
 Now we can execute the command perfectly well.
 
   cmd = HelloCommand.new
-  rtn = cmd.execute_command('hello --name=Fred')
+  rtn = cmd.execute!('hello --name=Fred')
 
   cmd.output.assert == "Hello, Fred!"
 

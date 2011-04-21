@@ -2,20 +2,26 @@
 
 == 1.1.0 / 2011-04-21
 
-This release simplifies Exectuable a bit, removing the special error class
-NoOptionError and using the standard NoMthodError in it's stay, and fixes
-an issue with inconsistant arguments being passed to the #option_missing
-callback.
+This release simplifies Exectuable, removing the #option_missing method
+and using the standard #method_missing callback instead. Along with this
+the special error class, +NoOptionError+, has been removed. This release
+also fixes an issue with inconsistant arguments being passed to the callback.
+Finally it renames the #execute_command method to simple #execute!.
 
 Changes:
 
+* Name Changes
+
+  * Renamed `#execute_command` method to `#execute!`.
+
 * Deprecations
 
-  * NoOptionError removed in favor of standard NoMethodError.
+  * Rely on #method_missing callback instead of special #option_missing method.
+  * The +NoOptionError+ exceotion class is no longer needed because of above.
 
 * Bug Fixes
 
-  * The #option_missing method takes the value of the argument set.
+  * The #method_missing callback takes the value of the option being set.
 
 
 == 1.0.0 / 2011-04-15
