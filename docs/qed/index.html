@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Exectuable</title>
+  <title>Executable</title>
 
   <!-- TODO: most of the css before the '*' can be removed. -->
 
@@ -131,7 +131,7 @@
     <div id="header">
       <img src="img/icon/book.jpg" align="left" style="padding-right: 10px;" alt=""/>
 
-      <div class="title">Exectuable</div>
+      <div class="title">Executable</div>
 
       <h1>Table of Contents</h1>
 
@@ -144,7 +144,7 @@
 <h1>Subclass Example</h1>
 
 <p>Lets say we have a class that we would like to work with on the command
-line, but don’t want to directly change the class itself via a mixin.</p>
+line, but want to keep the class itself unchanaged without mixin.</p>
 
 <pre>class Hello
   attr_accessor :name
@@ -176,11 +176,42 @@ end</pre>
 <p>Now we can execute the command perfectly well.</p>
 
 <pre>cmd = HelloCommand.new
-rtn = cmd.execute_command('hello --name=Fred')
+rtn = cmd.execute!('hello --name=Fred')
 
 cmd.output.assert == &quot;Hello, Fred!&quot;</pre>
 
 <p>And the original class remains undisturbed.</p>
+
+
+<h1>Example</h1>
+
+<p>This is the example used in the documentation.</p>
+
+<pre>class Example
+  include Executable
+
+  attr_accessor :quiet
+
+  def bread(*args)
+    [&quot;bread&quot;, quiet, *args]
+  end
+
+  def butter(*args)
+    [&quot;butter&quot;, quiet, *args]
+  end
+end</pre>
+
+<p>Use a subcommand and an argument.</p>
+
+<pre>x = Example.new
+r = x.execute!(&quot;butter yum&quot;)
+r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]</pre>
+
+<p>A subcommand and a boolean option.</p>
+
+<pre>x = Example.new
+r = x.execute!(&quot;bread --quiet&quot;)
+r.assert == [&quot;bread&quot;, true]</pre>
 
 
     </div>
