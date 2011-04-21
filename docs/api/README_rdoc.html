@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: README.rdoc ["Executable"]</title>
+
+  <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
+
+  <script src="./js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file">
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./History_rdoc.html">History.rdoc</a></li>
+        
+          <li class="file"><a href="./NOTICE_rdoc.html">NOTICE.rdoc</a></li>
+        
+          <li class="file"><a href="./Profile.html">Profile</a></li>
+        
+          <li class="file"><a href="./README_rdoc.html">README.rdoc</a></li>
+        
+          <li class="file"><a href="./Version.html">Version</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Executable.html">Executable</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    
+<h1><a href="Executable.html">Executable</a></h1>
+
+<h2>DESCRIPTION</h2>
+
+<p>The <a href="Executable.html">Executable</a> mixin is a very quick and and
+easy way to make almost any class usable via a command line interface. It
+simply uses writer methods as option setters, and the first command line
+argument as the method to call, with the subsequent arguments passed to the
+method.</p>
+
+<h2>FEATURES</h2>
+<ul><li>
+<p>Super easy to use, just mixin.</p>
+</li><li>
+<p>Public writers become options.</p>
+</li><li>
+<p>Public methods become subcommands.</p>
+</li></ul>
+
+<h2>RESOURCES</h2>
+<ul><li>
+<p><a
+href="http://rubyworks.github.com/executable">rubyworks.github.com/executable</a></p>
+</li><li>
+<p><a
+href="http://github.com/rubyworks/executable">github.com/rubyworks/executable</a></p>
+</li></ul>
+
+<h2>RELEASE NOTES</h2>
+
+<p>Please see HISTORY file.</p>
+
+<h2>SYNOPSIS</h2>
+
+<p>Simply mixin <a href="Executable.html">Executable</a>, then call
+#execute_command.</p>
+
+<pre>class X
+  include Executable
+
+  attr_accessor :quiet
+
+  attr_accessor :size
+
+  def bread(*args)
+    [&quot;bread&quot;, quiet, size, *args]
+  end
+
+  def butter(*args)
+    [&quot;butter&quot;, quiet, size, *args]
+  end
+end
+
+x = X.new
+
+x.execute!(&quot;butter yum&quot;)
+=&gt; [&quot;butter&quot;, nil, nil, &quot;yum&quot;]
+
+x.execute!(&quot;bread --quiet --size=big&quot;)
+=&gt; [&quot;bread&quot;, true, &quot;big&quot;]</pre>
+
+<p>Notice that <a href="Executable.html">Executable</a> requires an equal-sign
+(<tt>=</tt>) be used when specifying values for non-boolean attributes.</p>
+
+<p>To make the command available on the command line, add an executable to
+your project passing ARGV to the #execute! method.</p>
+
+<pre>#!usr/bin/env ruby
+require 'x'
+x = X.new
+x.execute!(ARGV)</pre>
+
+<h2>INSTALL</h2>
+
+<pre>$ gem install executable</pre>
+
+<h2>LEGAL</h2>
+
+<p>(Apache 2.0)</p>
+
+<p>Copyright © 2009 Thomas Sawyer</p>
+
+<p>Licensed under the Apache License, <a href="Version.html">Version</a> 2.0
+(the “License”); you may not use this program except in compliance with
+the License. You may obtain a copy of the License at</p>
+
+<pre>http://www.apache.org/licenses/LICENSE-2.0</pre>
+
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an “AS IS” BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
+
+  </div>
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
+

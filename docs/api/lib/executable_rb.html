@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>File: executable.rb ["Executable"]</title>
+
+  <link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet" />
+
+  <script src="../js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
+
+<body class="file file-popup">
+  <div id="metadata">
+    <dl>
+      <dt class="modified-date">Last Modified</dt>
+      <dd class="modified-date">Thu Apr 21 14:33:02 -0400 2011</dd>
+
+      
+      <dt class="requires">Requires</dt>
+      <dd class="requires">
+        <ul>
+        
+          <li>shellwords</li>
+        
+        </ul>
+      </dd>
+      
+
+      
+    </dl>
+  </div>
+
+  <div id="documentation">
+    
+    <div class="description">
+      <h2>Description</h2>
+      
+<h1><a href="../Executable.html">Executable</a> Mixin</h1>
+
+<p>The <a href="../Executable.html">Executable</a> mixin is a very quick and
+and easy way to make almost any class usable via a command line interface.
+It simply uses writer methods as option setters, and the first command line
+argument as a method to call with the subsequent arguments passed to the
+method.</p>
+
+<p>The only limitation of this approach is that non-boolean options must be
+specified with `key=value` notation.</p>
+
+<pre>class Example
+  include Executable
+
+  attr_accessor :quiet
+
+  def bread(*args)
+    [&quot;bread&quot;, quiet, *args]
+  end
+
+  def butter(*args)
+    [&quot;butter&quot;, quiet, *args]
+  end
+end
+
+ex = Example.new
+
+ex.execute!(&quot;butter yum&quot;)
+=&gt; [&quot;butter&quot;, nil, &quot;yum&quot;]
+
+ex.execute!(&quot;bread --quiet&quot;)
+=&gt; [&quot;butter&quot;, true]</pre>
+
+<p><a href="../Executable.html">Executable</a> also provides #option_missing,
+which you can overriden to provide suitable results when a given command
+line option has no corresponding  writer method.</p>
+
+    </div>
+    
+  </div>
+</body>
+</html>
+
