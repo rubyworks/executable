@@ -1,37 +1,23 @@
-#!/usr/bin/env ruby
+---
+rdoc:
+  service : rdoc
+  format  : "newfish"
+  output  : "site/docs/api"
+  include : nil
+  exclude : ["Rakefile"]
+  extra   : nil
 
-rdoc do
-  format   "redfish"
-  output   "site/docs/api"
-  include  nil
-  exclude  ["Rakefile"]
-  extra    nil
-end
+ridoc:
+  output  : ".ri"
+  active  : true
 
-ridoc do
-  output ".ri"
-  active true
-end
+dnote:
+  labels  : ~
+  output  : ~
 
-dnote do
-  loadpath nil
-  labels   nil
-  output   nil
-  #format   nil
-end
-
-#vclog do
-#  format :html   # xml, txt
-#  layout :rel    # gnu
-#  typed  false
-#  output nil
-#  active false
-#end
-
-custom "qedoc" do
-  cycle "site"
-  document %{
+qedoc:
+  service : custom
+  cycle   : site
+  document: |
     system "qedoc -o site/docs/qed -t Executable qed/"
-  }
-end
 
