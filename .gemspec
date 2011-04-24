@@ -33,7 +33,7 @@ dependencies:
   type: :development
   version_requirements: *id001
 description: The Executable mixin is a very quick and and easy way to make almost any class usable via a command line interface. It simply uses writer methods as option setters, and the first command line argument as the method to call, with the subsequent arguments passed to the method.
-email: ""
+email: transfire@gmail.com
 executables: []
 
 extensions: []
