@@ -140,78 +140,89 @@
     </div>
 
     <div id="content">
-      
-<h1>Subclass Example</h1>
+      <h1>Subclass Example</h1>
+<p>
+Lets say we have a class that we would like to work with on the command
+line, but want to keep the class itself unchanaged without mixin.
+</p>
+<pre>
+  class Hello
+    attr_accessor :name
 
-<p>Lets say we have a class that we would like to work with on the command
-line, but want to keep the class itself unchanaged without mixin.</p>
+    def initialize(name=&quot;World&quot;)
+      @name = name
+    end
 
-<pre>class Hello
-  attr_accessor :name
+    def hello
+      @output = &quot;Hello, #{name}!&quot;
+    end
 
-  def initialize(name=&quot;World&quot;)
-    @name = name
+    def output
+      @output
+    end
   end
+</pre>
+<p>
+Rather then including Exectuable in the class directly, we can create a
+subclass and use it instead.
+</p>
+<pre>
+  class HelloCommand &lt; Hello
+    include Executable
 
-  def hello
-    @output = &quot;Hello, #{name}!&quot;
+    def main
+      hello
+    end
   end
+</pre>
+<p>
+Now we can execute the command perfectly well.
+</p>
+<pre>
+  cmd = HelloCommand.new
+  rtn = cmd.execute!('hello --name=Fred')
 
-  def output
-    @output
-  end
-end</pre>
-
-<p>Rather then including Exectuable in the class directly, we can create a
-subclass and use it instead.</p>
-
-<pre>class HelloCommand &lt; Hello
-  include Executable
-
-  def main
-    hello
-  end
-end</pre>
-
-<p>Now we can execute the command perfectly well.</p>
-
-<pre>cmd = HelloCommand.new
-rtn = cmd.execute!('hello --name=Fred')
-
-cmd.output.assert == &quot;Hello, Fred!&quot;</pre>
-
-<p>And the original class remains undisturbed.</p>
-
+  cmd.output.assert == &quot;Hello, Fred!&quot;
+</pre>
+<p>
+And the original class remains undisturbed.
+</p>
 
 <h1>README Example</h1>
+<p>
+This is the example used in the documentation.
+</p>
+<pre>
+   class Example
+     include Executable
 
-<p>This is the example used in the documentation.</p>
+     attr_accessor :quiet
 
-<pre>class Example
-  include Executable
+     def bread(*args)
+       [&quot;bread&quot;, quiet, *args]
+     end
 
-  attr_accessor :quiet
-
-  def bread(*args)
-    [&quot;bread&quot;, quiet, *args]
-  end
-
-  def butter(*args)
-    [&quot;butter&quot;, quiet, *args]
-  end
-end</pre>
-
-<p>Use a subcommand and an argument.</p>
-
-<pre>x = Example.new
-r = x.execute!(&quot;butter yum&quot;)
-r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]</pre>
-
-<p>A subcommand and a boolean option.</p>
-
-<pre>x = Example.new
-r = x.execute!(&quot;bread --quiet&quot;)
-r.assert == [&quot;bread&quot;, true]</pre>
+     def butter(*args)
+       [&quot;butter&quot;, quiet, *args]
+     end
+   end
+</pre>
+<p>
+Use a subcommand and an argument.
+</p>
+<pre>
+   x = Example.new
+   r = x.execute!(&quot;butter yum&quot;)
+   r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]
+</pre>
+<p>
+A subcommand and a boolean option.
+</p>
+<pre>
+   x = Example.new
+   r = x.execute!(&quot;bread --quiet&quot;)
+   r.assert == [&quot;bread&quot;, true]
+</pre>
 
 
     </div>
