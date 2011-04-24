@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 
-box do
-  types  ['gem', 'tar']
-  active true
-end
-
 grancher do
   active true
 end
