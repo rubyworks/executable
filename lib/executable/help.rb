@@ -65,10 +65,15 @@ module Executable
     # By default the name is assumed to be the class name, substituting
     # dashes for double colons.
     #
+    # @todo Should this instead default to `File.basename($0)` ?
+    #
     # @method name(text=nil)
     #
     section(:name) do
-      cli_class.name.sub(/\#\<.*?\>\:\:/,'').downcase.gsub('::','-')
+      str = cli_class.name.sub(/\#\<.*?\>\:\:/,'').downcase.gsub('::','-')
+      str.chomp!('command')
+      str.chomp!('cli')
+      str
     end
 
     #
