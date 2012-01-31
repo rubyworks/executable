@@ -1,4 +1,3 @@
-require 'executable/source'
 require 'executable/core_ext'
 
 module Executable
