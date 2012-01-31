@@ -10,7 +10,7 @@
 
 == DESCRIPTION
 
-Think of Executable as a *COM*, a Commandline Object Mapper,
+Think of Executable as a *COM*, a Command-line Object Mapper,
 in much the same way that ActiveRecord is an ORM,
 an Object Relational Mapper. A class utilizing Executable
 can define a complete command line tool using nothing more
@@ -30,7 +30,7 @@ than Ruby's own own standard syntax. No special DSL is required.
 == LIMITATIONS
 
 * Ruby 1.9+ only.
-* Help doesn't handle aliasee well (yet).
+* Help doesn't handle aliases well (yet).
 
 
 == RELEASE NOTES
@@ -42,14 +42,14 @@ Please see HISTORY.rdoc file.
 
 Executable can be use as a mixin, or as a subclass via `Executable::Base`.
 Add methods to you class to handle command-line options. Writer methods 
-(those ending in '=') coorepsond to an options and a query method (those
+(those ending in '=') correspond to an options and a query method (those
 ending in '?') mark an attribute as a flag option. 
 
 For example, here is a simple "Hello, World!" commandline tool.
 
     require 'executable'
 
-    class HelloCmd < Executable::Command
+    class HelloCommand < Executable::Command
       # Say it in uppercase?
       def load=(bool)
         @loud = bool
@@ -81,7 +81,7 @@ to your project passing ARGV to the #execute or #run methods.
 
     #!usr/bin/env ruby
     require 'hello.rb'
-    HelloCmd.run
+    HelloCommand.run
 
 If we named this file `hello`, set its execute flag and made it available
 on our systems $PATH, then:
@@ -112,16 +112,16 @@ description the command itself from the `#call` method.
 Basic help like this is fine for personal tools, but for public facing
 production applications it is desirable to utilize manpages. To this end,
 Executable provides Markdown formatted help as well. We can access this,
-for example, via `HelloCmd.help.markdown`. The idea with this is that
+for example, via `HelloCommand.help.markdown`. The idea with this is that
 we can save the output to `man/hello.ronn` or copy it the top of our `bin/`
-file, edit it to prefection and then use tools such a {ronn}[https://github.com/rtomayko/ronn],
+file, edit it to perfection and then use tools such a {ronn}[https://github.com/rtomayko/ronn],
 {binman}[https://github.com/sunaku/binman] or {md2man}[https://github.com/sunaku/md2man]
 to generate the manpages. What's particularly cool about Executable,
 is that once we have a manpage in the standard `man/` location in our project,
 the `#show_help` method will use it instead of the plain text.
 
 For a more detail example see {QED}[demo.html]
-and {API}[http://rubydoc.info/gems/executable/frames] documentaiton.
+and {API}[http://rubydoc.info/gems/executable/frames] documentation.
 
 
 == INSTALLATION
