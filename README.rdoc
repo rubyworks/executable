@@ -5,16 +5,17 @@
 {Report Issue}[http://github.com/rubyworks/executable/features] |
 {#rubyworks}[irc://irc.freenode.org/rubyworks]
 
-{<img src="http://travis-ci.org/rubyworks/executable.png" />}[http://travis-ci.org/rubyworks/executable]
+{<img src="http://travis-ci.org/rubyworks/executable.png"/>}[http://travis-ci.org/rubyworks/executable]
 
 
 == DESCRIPTION
 
-Think of Executable as a *COM*, a Command-line Object Mapper,
-in much the same way that ActiveRecord is an ORM,
-an Object Relational Mapper. A class utilizing Executable
-can define a complete command line tool using nothing more
-than Ruby's own own standard syntax. No special DSL is required. 
+Executable is to the commandline, what ActiveRecord is the database. 
+You can think of Executable as a *COM*, a Command-line Object Mapper,
+just as ActiveRecord is an ORM (Object Relational Mapper). Any class
+mixing in Executable or subclassing Executable::Command can define
+a complete command line tool using nothing more than Ruby's standard
+syntax. No special DSL is required. 
 
 
 == FEATURES
@@ -40,10 +41,10 @@ Please see HISTORY.rdoc file.
 
 == SYNOPSIS
 
-Executable can be use as a mixin, or as a subclass via `Executable::Base`.
-Add methods to you class to handle command-line options. Writer methods 
-(those ending in '=') correspond to an options and a query method (those
-ending in '?') mark an attribute as a flag option. 
+CLIs can be built by using a Executable as a mixin, or by subclassing 
+`Executable::Command`. Methods seemlessly handle command-line options.
+Writer methods (those ending in '=') correspond to options and query
+methods (those ending in '?') modify them to be boolean switches. 
 
 For example, here is a simple "Hello, World!" commandline tool.
 
