@@ -26,16 +26,14 @@ create a subclass and use it instead.
   class HelloCommand < Hello
     include Executable
 
-    def main
+    def call(*args)
       hello
     end
   end
 
 Now we can execute the command perfectly well.
 
-  cmd = HelloCommand.new
-  rtn = cmd.execute!('hello --name=Fred')
-
+  cmd = HelloCommand.execute(['hello', '--name=Fred'])
   cmd.output.assert == "Hello, Fred!"
 
 And the original class remains undisturbed.
