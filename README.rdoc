@@ -1,8 +1,8 @@
 = Executable
 
 {Website}[http://rubyworks.github.com/executable] |
-{Source Code}[http://github.com/rubyworrks/executable] |
-{Report Issue}[http://github.com/rubyworrks/executable/features] |
+{Source Code}[http://github.com/rubyworks/executable] |
+{Report Issue}[http://github.com/rubyworks/executable/features] |
 {#rubyworks}[irc://irc.freenode.org/rubyworks]
 
 {<img src="http://travis-ci.org/rubyworks/executable.png" />}[http://travis-ci.org/rubyworks/executable]
