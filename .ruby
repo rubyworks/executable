@@ -6,7 +6,7 @@ authors:
   email: transfire@gmail.com
 copyrights:
 - holder: Rubyworks
-  year: '2009'
+  year: '2008'
   license: BSD-2-Clause
 replacements: []
 alternatives: []
@@ -54,4 +54,4 @@ description: ! 'Think of Executable as a *COM*, a Commandline Object Mapper,
 
   than Ruby''s own method definitions.'
 organization: rubyworks
-date: '2012-01-30'
+date: '2012-01-31'

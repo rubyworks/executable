@@ -26,5 +26,5 @@ qedoc:
   files: demo/
   output:
     - DEMO.rdoc
-    - web/demo.html
+    - site/demo.html
 

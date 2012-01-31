@@ -44,7 +44,7 @@ For example, here is a simple "Hello, World!" commandline tool.
 
     require 'executable'
 
-    class HelloCLI < Executable::Base
+    class HelloCmd < Executable::Command
       # Say it in uppercase?
       def load=(bool)
         @loud = bool
@@ -57,12 +57,12 @@ For example, here is a simple "Hello, World!" commandline tool.
 
       # Show this message.
       def help?
-        puts self
+        cli.show_help
         exit
       end
       alias :h? :help?
 
-      # Run the command.
+      # Say hello.
       def call(name)
         name = name || 'World'
         str  = "Hello, #{name}!"
@@ -71,10 +71,15 @@ For example, here is a simple "Hello, World!" commandline tool.
       end
     end
 
-    Example.execute!
+To make the command available on the command line, add an executable
+to your project passing ARGV to the #execute or #run methods.
 
-If we named the file `hello`, set its execute flag and made it available
-in our $PATH.
+    #!usr/bin/env ruby
+    require 'hello.rb'
+    HelloCmd.run(ARGV)
+
+If we named this file `hello`, set its execute flag and made it available
+via our systems $PATH, then:
 
     $ hello John
     Hello, World!
@@ -85,18 +90,31 @@ in our $PATH.
     $ hello --loud John
     HELLO, JOHN!
 
-Notice that Executable requires an equal-sign (<code>=</code>) be used
-when specifying values for non-boolean attributes.
+Executable can also generate help text for commands.
 
-To make the command available on the command line, add an executable
-to your project passing ARGV to the #execute! method.
+    $ hello --help
+    USAGE: hello [options]
 
-    #!usr/bin/env ruby
-    require 'example'
-    example = Example.new
-    example.execute!(ARGV)
+    Say hello.
 
-For a more detail example see DEMO.rdoc.
+    --loud    Say it in uppercase?
+    --help    Show this message
+
+If you look back at the class definition you can see it's pulling
+comments from the source to provide descriptions. 
+
+Basic help like this is fine for personal tools, but for public facing
+production applications it is desirable to utilize manpages. To this end,
+Executable provides Markdown formatted help as well. We can access this,
+for example, via `HelloCmd.help.to_markdown`. The idea with this is that
+we can save the output to `man/hello.ronn` or copy it the top of our `bin/`
+file, edit it to prefection and then use tools such a {ronn}[https://github.com/rtomayko/ronn],
+{binman}[https://github.com/sunaku/binman] or {md2man}[https://github.com/sunaku/md2man]
+to generate the manpages. What's particularly cool about Executable,
+is that once we have a manpage, the `#show_help` will use it instead.
+
+For a more detail example see {QED}[demo.html]
+and {API}[http://rubydoc.info/gems/executable/frames] documentaiton.
 
 
 == INSTALL
