@@ -25,10 +25,19 @@ module Executable
   # attributes are simply ignored.
   #
   def initialize(settings={})
+    initialize_defaults
     settings.each do |k,v|
       __send__("#{k}=", v) if respond_to?("#{k}=")
     end
   end
+
+  #
+  #
+  #
+  def initialize_defaults
+  end
+
+public
 
   #
   #
@@ -46,19 +55,26 @@ module Executable
   end
 
   #
+  # Access the help instance of the class of the command object.
+  #
+  def command_help
+    self.class.help
+  end
+
+  # Output command line help.
+  def to_s
+    self.class.to_s
+  end
+
+private
+
+  #
   # Override option_missing if needed. This receives the name of the option
   # and the remaining arguments list. It must consume any arguments it uses
   # from the begining of the list (i.e. in-place manipulation).
   #
   def option_missing(opt, argv)
     raise NoOptionError, opt
-  end
-
-  #
-  # Access the help instance of the class of the command object.
-  #
-  def command_help
-    self.class.help
   end
 
   # Alterate use as a base class.
