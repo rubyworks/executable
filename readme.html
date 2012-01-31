@@ -54,7 +54,9 @@ ending in ‘?’) mark an attribute as a flag option.</p>
 
 <pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">'executable'</span>
 
-<span class="ruby-keyword">class</span> <span class="ruby-constant">HelloCommand</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Executable</span><span class="ruby-operator">::</span><span class="ruby-constant">Command</span>
+<span class="ruby-keyword">class</span> <span class="ruby-constant">HelloCommand</span>
+  <span class="ruby-identifier">include</span> <span class="ruby-constant">Executable</span>
+
   <span class="ruby-comment"># Say it in uppercase?</span>
   <span class="ruby-keyword">def</span> <span class="ruby-identifier">load=</span>(<span class="ruby-identifier">bool</span>)
     <span class="ruby-ivar">@loud</span> = <span class="ruby-identifier">bool</span>
