@@ -14,23 +14,28 @@ Think of Executable as a *COM*, a Commandline Object Mapper,
 in much the same way that ActiveRecord is an ORM,
 an Object Relational Mapper. A class utilizing Executable
 can define a complete command line tool using nothing more
-than Ruby's own method definitions.
-
-Executable is a very striaght-forward CLI framework for Ruby. CLI::Base is
-a *COM* --a Command-to-Object Mapping library. A command line tool can be defined
-using nothing more than Ruby's own standard syntax. No special DSL is required. 
+than Ruby's own own standard syntax. No special DSL is required. 
 
 
 == FEATURES
 
-* Super easy to use, just mixin.
+* Easy to use, just mixin or subclass.
+* Define #call to control the command procedure.
 * Public writers become options.
-* Public methods become subcommands.
+* Namespace children become subcommands.
+* Or easily dispatch subcommands to public methods.
+* Generate help in plain text or markdown.
+
+
+== LIMITATIONS
+
+* Ruby 1.9+ only.
+* Help doesn't handle aliasee well (yet).
 
 
 == RELEASE NOTES
 
-Please see HISTORY file.
+Please see HISTORY.rdoc file.
 
 
 == SYNOPSIS
@@ -119,11 +124,11 @@ For a more detail example see {QED}[demo.html]
 and {API}[http://rubydoc.info/gems/executable/frames] documentaiton.
 
 
-== INSTALL
+== INSTALLATION
 
 Install with RubyGems in the usual fashion.
 
-  $ gem install executable
+    $ gem install executable
 
 
 == LEGAL
