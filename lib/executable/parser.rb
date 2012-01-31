@@ -193,17 +193,7 @@ module Executable
     #
     # @return [Hash] name mapped to subcommnd class
     def subcommands
-      @subcommands ||= (
-        consts = @cli_class.constants - @cli_class.superclass.constants
-        consts.inject({}) do |h, c|
-          c = @cli_class.const_get(c)
-          if Class === c && Executable > c
-            n = c.name.split('::').last.downcase
-            h[n] = c
-          end
-          h
-        end
-      )
+      @cli_class.subcommands
     end
 
   end
