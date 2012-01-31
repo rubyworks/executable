@@ -1,13 +1,24 @@
 = Executable
 
+{Website}[http://rubyworks.github.com/executable] |
+{Source Code}[http://github.com/rubyworrks/executable] |
+{Report Issue}[http://github.com/rubyworrks/executable/features] |
+{#rubyworks}[irc://irc.freenode.org/rubyworks]
+
+{<img src="http://travis-ci.org/rubyworks/executable.png" />}[http://travis-ci.org/rubyworks/executable]
+
+
 == DESCRIPTION
 
-The Executable mixin is a very quick and and easy
-way to make almost any class usable via a command
-line interface. It simply uses writer methods as
-option setters, and the first command line argument
-as the method to call, with the subsequent arguments
-passed to the method.
+Think of Executable as a *COM*, a Commandline Object Mapper,
+in much the same way that ActiveRecord is an ORM,
+an Object Relational Mapper. A class utilizing Executable
+can define a complete command line tool using nothing more
+than Ruby's own method definitions.
+
+Executable is a very striaght-forward CLI framework for Ruby. CLI::Base is
+a *COM* --a Command-to-Object Mapping library. A command line tool can be defined
+using nothing more than Ruby's own standard syntax. No special DSL is required. 
 
 
 == FEATURES
@@ -17,16 +28,54 @@ passed to the method.
 * Public methods become subcommands.
 
 
-== RESOURCES
-
-* http://rubyworks.github.com/executable
-* http://github.com/rubyworks/executable
-
-
 == RELEASE NOTES
 
 Please see HISTORY file.
 
+
+== SYNOPSIS
+
+Executable can be use as a mixin, or as a subclass via `Executable::Base`.
+Add methods to you class to handle command-line options. Writer methods 
+(those ending in '=') coorepsond to an options and a query method (those
+ending in '?') mark an attribute as a flag option. 
+
+For example, here is a simple commandline tool to run a Ruby script.
+
+    require 'executable'
+
+    class RunCLI < Executable::Base
+      # Require LIBRARY before executing your script.
+      def require=(lib)
+        require lib
+      end
+      alias :r= :require=
+
+      # Include PATH in $LOAD_PATH.
+      def include=(path)
+        $:.unshift path
+      end
+      alias :I= :incude
+
+      # Run in DEBUG mode.
+      def debug?
+        $DEBUG = true
+      end
+
+      # Show this message.
+      def help?
+        puts self
+        exit
+      end
+      alias :h? :help?
+
+      # Run the command.
+      def main(script)
+        load(script)
+      end
+    end
+
+    Example.execute!("foo.rb")
 
 == SYNOPSIS
 
@@ -56,7 +105,6 @@ Simply mixin Executable, then call #execute_command.
   example.execute!("bread --quiet --size=big")
   => ["bread", true, "big"]
 
-
 Notice that Executable requires an equal-sign (<code>=</code>) be used
 when specifying values for non-boolean attributes.
 
@@ -68,27 +116,21 @@ to your project passing ARGV to the #execute! method.
   example = Example.new
   example.execute!(ARGV)
 
+For a more detail example see DEMO.rdoc.
+
 
 == INSTALL
+
+Install with RubyGems in the usual fashion.
 
   $ gem install executable
 
 
 == LEGAL
 
-(Apache 2.0)
+Copyright (c) 2008 Rubyworks
 
-Copyright (c) 2009 Thomas Sawyer
+Distributable in accordance with the *BSD-2-Clause* license.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this program except in compliance with the License.
-You may obtain a copy of the License at
-
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+See COPYING.rdoc for licensing details.
 
