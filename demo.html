@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>Demonstration</title>
+  <title>Executable Demonstrations</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
 
   <!-- TODO: most of the css before the '*' can be removed. -->
@@ -129,7 +129,7 @@
       <!-- TODO: find a preminatn image on web to use -->
       <!-- <img src="http://www.cdnjs.com/images/poweredbycloudflare.png" align="left" style="padding-right: 10px;" alt=""/> -->
 
-      <div class="title">Demonstration</div>
+      <div class="title">Executable Demonstrations</div>
 
       <h1>Table of Contents</h1>
 
@@ -323,15 +323,18 @@ end</pre>
 
 <h2>Command Help</h2>
 
-<p>Require Executor library.</p>
+<p>Executable Commands can generate help output. It does this by extracting
+the commenst associated with the option methods. A description of the
+command itself is taken from the comment on the `#call` method. Only the
+first line of a comment is used, so the reset of the comment can still be
+catered to documention tools such as YARD and RDoc.</p>
 
-<pre>require 'executable'</pre>
-
-<p>Setup an example CLI subclass.</p>
+<p>Let’s setup an example CLI subclass to demonstrate this.</p>
 
 <pre>class MyCLI &lt; Executable::Command
 
   # This is global option -g.
+  # Yadda yadda yadda...
   def g=(bool)
     @g = bool
   end
@@ -374,6 +377,8 @@ end</pre>
 
 end</pre>
 
+<h3>Plain Text</h3>
+
 <p>The help output,</p>
 
 <pre>@out = MyCLI::C1.help.to_s</pre>
@@ -391,7 +396,7 @@ OPTIONS
 
 Copyright (c) 2012</pre>
 
-<h3>Makrdown</h3>
+<h3>Markdown</h3>
 
 <p>The help feature can also output ronn-style markdown,</p>
 
