@@ -25,16 +25,9 @@ module Executable
   # attributes are simply ignored.
   #
   def initialize(settings={})
-    initialize_defaults
     settings.each do |k,v|
       __send__("#{k}=", v) if respond_to?("#{k}=")
     end
-  end
-
-  #
-  #
-  #
-  def initialize_defaults
   end
 
 public
