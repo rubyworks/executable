@@ -59,7 +59,7 @@ module Executable
     #
     def execute(argv=ARGV)
       cli, args = parser.parse(argv)
-      cli.__call__(*args)
+      cli.call(*args)
       return cli
     end
 

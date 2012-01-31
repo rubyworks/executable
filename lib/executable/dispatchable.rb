@@ -2,7 +2,7 @@ module Exectutable
 
   # Bare minimum variation of Executable which provides basic compatibility
   # with previous versions of Exectuable. It provides nothing but the 
-  # Domain method at the class level and a `#__call__` method that dipatches
+  # Domain method at the class level and a `#call` method that dipatches
   # to public methods.
   #
   # Among other uses, Dispatchable can be useful for dropping into any class
@@ -19,7 +19,7 @@ module Exectutable
       base.dispatcher = :__call__
     end
 
-    def __call__(name, *args)
+    def call(name, *args)
       public_method(name).call(args)
     end
   end

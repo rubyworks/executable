@@ -43,16 +43,6 @@ public
   end
 
   #
-  # This is what the domain actually calls when the command is run. It simply dispatches
-  # to the `#call` method. The reason this is used if for {Dispatchable}, a bare minimal
-  # variation of Executable that add no other methods but #__call__ in order to ensure
-  # no methods are clobbered in the augmented class.
-  #
-  def __call__(*args)
-    call(*args)
-  end
-
-  #
   # Convert Executable to Proc object.
   #
   def to_proc
