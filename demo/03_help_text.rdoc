@@ -1,14 +1,17 @@
 == Command Help
 
-Require Executor library.
+Executable Commands can generate help output. It does this by extracting
+the commenst associated with the option methods. A description of the
+command itself is taken from the comment on the `#call` method. Only
+the first line of a comment is used, so the reset of the comment can
+still be catered to documention tools such as YARD and RDoc.
 
-    require 'executable'
-
-Setup an example CLI subclass.
+Let's setup an example CLI subclass to demonstrate this.
 
     class MyCLI < Executable::Command
 
       # This is global option -g.
+      # Yadda yadda yadda...
       def g=(bool)
         @g = bool
       end
@@ -51,6 +54,8 @@ Setup an example CLI subclass.
 
     end
 
+=== Plain Text
+
 The help output,
 
     @out = MyCLI::C1.help.to_s
@@ -68,7 +73,7 @@ should be clearly laid out as follows:
 
     Copyright (c) 2012
 
-=== Makrdown
+=== Markdown
 
 The help feature can also output ronn-style markdown,
 

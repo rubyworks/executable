@@ -17,11 +17,11 @@ demo/samples/man/hello.1.html
 demo/samples/man/hello.1.ronn
 lib/executable/config.rb
 lib/executable/core_ext.rb
+lib/executable/dispatchable.rb
 lib/executable/domain.rb
 lib/executable/errors.rb
 lib/executable/help.rb
 lib/executable/parser.rb
-lib/executable/source.rb
 lib/executable/utils.rb
 lib/executable/version.rb
 lib/executable.rb
@@ -38,5 +38,7 @@ meta/summary
 meta/version
 test/test_executable.rb
 HISTORY.rdoc
+DEMO.rdoc
+Schedule.reap
 README.rdoc
 COPYING.rdoc

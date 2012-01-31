@@ -49,7 +49,9 @@ For example, here is a simple "Hello, World!" commandline tool.
 
     require 'executable'
 
-    class HelloCommand < Executable::Command
+    class HelloCommand
+      include Executable
+
       # Say it in uppercase?
       def load=(bool)
         @loud = bool
