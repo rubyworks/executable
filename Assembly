@@ -23,6 +23,7 @@ qed:
   files: demo/
 
 qedoc:
+  title: Executable Demonstrations
   files: demo/
   output:
     - DEMO.rdoc
