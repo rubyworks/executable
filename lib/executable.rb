@@ -6,6 +6,7 @@ require 'executable/help'
 require 'executable/config'
 require 'executable/utils'
 require 'executable/domain'
+require 'executable/dispatchable'
 
 # Executable is a mixin for creating robust, inheritable and
 # reusable command line interfaces.
@@ -37,8 +38,18 @@ public
   # Command invocation abstract method.
   #
   def call(*args)
-    #puts self.class  # TODO: fix help
+    #puts cli.show_help           # TODO: show help instead of error ?
     raise NotImplementedError
+  end
+
+  #
+  # This is what the domain actually calls when the command is run. It simply dispatches
+  # to the `#call` method. The reason this is used if for {Dispatchable}, a bare minimal
+  # variation of Executable that add no other methods but #__call__ in order to ensure
+  # no methods are clobbered in the augmented class.
+  #
+  def __call__(*args)
+    call(*args)
   end
 
   #

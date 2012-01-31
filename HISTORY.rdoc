@@ -1,5 +1,25 @@
 = RELEASE HISTORY
 
+== 1.2.0 / 2012-01-31
+
+Version 1.2.0 is complete rewrite of Executable. Actually it was decided that
+the old design was too simplistic in it design concept, so another library
+that we had been working on, called Executioner and briefly CLI::Base, was
+ported over and with some API changes is now the new Executable project.
+The idea of the project is generally the same, but Executable now offeres
+more features, such a good help output, a more robust design and namespace-base
+subcomamnds. Of course to accomidate all this the API had to change some over
+the previous version, so be sure to read the API documention.
+
+Changes:
+
+* Deprecate old implementation.
+* Port Executioner project over to become new Executable project.
+* Supports namespace-base subcommmands.
+* Supports formatted help output in plain text and markdown.
+* Supports manpage lookup and display.
+
+
 == 1.1.0 / 2011-04-21
 
 This release simplifies Exectuable, removing the #option_missing method
