@@ -40,26 +40,19 @@ Add methods to you class to handle command-line options. Writer methods
 (those ending in '=') coorepsond to an options and a query method (those
 ending in '?') mark an attribute as a flag option. 
 
-For example, here is a simple commandline tool to run a Ruby script.
+For example, here is a simple "Hello, World!" commandline tool.
 
     require 'executable'
 
-    class RunCLI < Executable::Base
-      # Require LIBRARY before executing your script.
-      def require=(lib)
-        require lib
+    class HelloCLI < Executable::Base
+      # Say it in uppercase?
+      def load=(bool)
+        @loud = bool
       end
-      alias :r= :require=
 
-      # Include PATH in $LOAD_PATH.
-      def include=(path)
-        $:.unshift path
-      end
-      alias :I= :incude
-
-      # Run in DEBUG mode.
-      def debug?
-        $DEBUG = true
+      #
+      def loud?
+        @loud
       end
 
       # Show this message.
@@ -70,40 +63,27 @@ For example, here is a simple commandline tool to run a Ruby script.
       alias :h? :help?
 
       # Run the command.
-      def main(script)
-        load(script)
+      def call(name)
+        name = name || 'World'
+        str  = "Hello, #{name}!"
+        str  = str.upcase if loud?
+        puts str
       end
     end
 
-    Example.execute!("foo.rb")
+    Example.execute!
 
-== SYNOPSIS
+If we named the file `hello`, set its execute flag and made it available
+in our $PATH.
 
-Simply mixin Executable, then call #execute_command.
+    $ hello John
+    Hello, World!
 
-  class Example
-    include Executable
+    $ hello John
+    Hello, John!
 
-    attr_accessor :quiet
-
-    attr_accessor :size
-
-    def bread(*args)
-      ["bread", quiet, size, *args]
-    end
-
-    def butter(*args)
-      ["butter", quiet, size, *args]
-    end
-  end
-
-  example = Example.new
-
-  example.execute!("butter yum")
-  => ["butter", nil, nil, "yum"]
-
-  example.execute!("bread --quiet --size=big")
-  => ["bread", true, "big"]
+    $ hello --loud John
+    HELLO, JOHN!
 
 Notice that Executable requires an equal-sign (<code>=</code>) be used
 when specifying values for non-boolean attributes.
@@ -111,10 +91,10 @@ when specifying values for non-boolean attributes.
 To make the command available on the command line, add an executable
 to your project passing ARGV to the #execute! method.
 
-  #!usr/bin/env ruby
-  require 'example'
-  example = Example.new
-  example.execute!(ARGV)
+    #!usr/bin/env ruby
+    require 'example'
+    example = Example.new
+    example.execute!(ARGV)
 
 For a more detail example see DEMO.rdoc.
 
