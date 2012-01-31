@@ -1,4 +1,6 @@
-.ri
+.reap/digest
+.yardoc
+doc
 log
 pkg
-site/docs
+site
