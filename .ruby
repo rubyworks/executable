@@ -11,6 +11,10 @@ copyrights:
 replacements: []
 alternatives: []
 requirements:
+- name: detroit
+  groups:
+  - build
+  development: true
 - name: qed
   groups:
   - test
@@ -18,10 +22,6 @@ requirements:
 - name: ae
   groups:
   - test
-  development: true
-- name: detroit
-  groups:
-  - build
   development: true
 dependencies: []
 conflicts: []
