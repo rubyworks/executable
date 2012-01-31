@@ -27,28 +27,30 @@ module Executable
     end
 
     #
-    #
+    # Inspection method. This must be redefined b/c #to_s is overridden.
     #
     def inspect
       name
     end
 
     #
-    # Command configuration options.
+    # Returns `help.to_s`.
     #
-    # @todo: This isn't used yet. Eventually the idea is to allow
-    #   some additional flexibility in the parser behavior.
-    #
-    def config
-      @config ||= Config.new
+    def to_s
+      cli.to_s
     end
 
     #
-    # Interface with cooresponding help object.
+    # Interface with cooresponding cli/help object.
     #
     def help
       @help ||= Help.new(self)
     end
+
+    #
+    # Interface with cooresponding cli/help object.
+    #
+    alias_method :cli, :help
 
     #
     # Execute the command.
@@ -68,7 +70,7 @@ module Executable
 
     #
     #
-    #
+    # @return [Array<Executable,Array>] The executable and call arguments.
     def parse(argv)
       parser.parse(argv)
     end

@@ -5,7 +5,7 @@ interface without subcommands.
 
   require 'executable'
 
-  class NoSubCommandCLI < Executable::Base
+  class NoSubCommandCLI < Executable::Command
 
     attr :result
 

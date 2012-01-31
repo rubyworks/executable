@@ -4,7 +4,16 @@ require 'executable/core_ext'
 module Executable
 
   # Encpsulates command help for defining and displaying well formated help
-  # output in plain text or via manpages if found.
+  # output in plain text, markdown or via manpages if found.
+  #
+  # TODO: Currently doesn't hande aliases/shortcuts well and simply
+  # lists them as separate entries.
+  #
+  # Creating text help in the fly is fine for personal projects, but
+  # for production app, ideally you want to have man pages. You can
+  # use the #markdown method to generate `.ronn` files and use the
+  # ronn tool to build manpages for your project. There is also the
+  # binman and md2man projects which can be used similarly.
   #
   class Help
 
@@ -26,6 +35,7 @@ module Executable
     def initialize(cli_class)
       @cli_class = cli_class
 
+      @name       = nil
       @usage      = nil
       @decription = nil
       @copying    = nil
@@ -46,7 +56,7 @@ module Executable
     end
 
     #
-    # The CLI::Base subclass to which this help applies.
+    # The Executable subclass to which this help applies.
     #
     attr :cli_class
 
@@ -119,44 +129,55 @@ module Executable
     #
     def show_help(hint=nil)
       if file = manpage(hint)
-        system "man #{file}"
+        show_manpage(file)
       else
-        puts text  # ronn
+        puts self
       end
+    end
+
+    #
+    def show_manpage(file)
+      #exec "man #{file}"
+      system "man #{file}"
     end
 
     #
     # Get man-page if there is one.
     #
-    def manpage(hint=nil)
+    def manpage(dir=nil)
       @manpage ||= (
-        man  = []
-        dir  = @file ? File.dirname(@file) : nil
-        glob = "man/#{name}.1"
+        man = []
+        dir = nil
 
-        if hint
-          if File.exist?(hint)
-            return hint
-          elsif File.directory?(hint)
-            dir = hint
-          else
-            glob = hint if hint
-          end
+        if dir
+          raise unless File.directory?(dir)
+        end
+
+        if !dir && call_method
+          file, line = call_method.source_location
+          dir = File.dirname(file)
         end
 
         if dir
-          while dir != '/'
-            man.concat(Dir[File.join(dir, glob)])
-            #man.concat(Dir[File.join(dir, "man/man1/#{name}.1")])
-            #man.concat(Dir[File.join(dir, "man/#{name}.1.ronn")])
-            #man.concat(Dir[File.join(dir, "man/man1/#{name}.1")])
-            break unless man.empty?
-            dir = File.dirname(dir)
-          end
+          glob = "man/{man1/,}#{name}.1"
+          lookup(glob, dir)
+        else
+          nil
         end
-
-        man.first
       )
+    end
+
+    #
+    # Render help text to a given +format+. If no format it given
+    # then renders to plain text.
+    #
+    def to_s(format=nil)
+      case format
+      when :markdown, :md
+        markdown
+      else
+        text
+      end
     end
 
     #
@@ -190,12 +211,12 @@ module Executable
     end
 
     #
-    alias_method :to_s, :text
+    alias_method :txt, :text
 
     #
-    # Generate a ronn-formated Markdown.
+    # Generate a RONN-style Markdown.
     #
-    def ronn
+    def markdown
       commands = text_subcommands
       options  = text_options
 
@@ -238,6 +259,9 @@ module Executable
     end
 
     #
+    alias_method :md, :markdown
+
+    #
     # Description of command in printable form.
     # But will return +nil+ if there is no description.
     #
@@ -247,11 +271,7 @@ module Executable
       return description if description
       #return Source.get_above_comment(@file, @line) if @file
 
-      if main = method_list.find{ |m| m.name == :call }
-        main.comment
-      else
-        nil
-      end
+      call_method ? call_method.comment : nil
     end
 
     #
@@ -281,7 +301,7 @@ module Executable
         end
       end    
 
-      max = option_list.map{ |opt| opt.usage.size }.max + 2
+      max = option_list.map{ |opt| opt.usage.size }.max.to_i + 2
 
       option_list.map do |opt|
         [max, opt]
@@ -314,12 +334,20 @@ module Executable
 
   private
 
+    #
+    def call_method
+      @call_method ||= method_list.find{ |m| m.name == :call }
+    end
+
+    #
     # Produce a list relavent methods.
     #
     def method_list
       list      = []
       methods   = []
-      stop_at   = cli_class.ancestors.index(Executable::Base) || cli_class.ancestors.index(Executable) || -1
+      stop_at   = cli_class.ancestors.index(Executable::Command) ||
+                  cli_class.ancestors.index(Executable) ||
+                  -1
       ancestors = cli_class.ancestors[0...stop_at]
       ancestors.reverse_each do |a|
         a.instance_methods(false).each do |m|
@@ -329,7 +357,26 @@ module Executable
       list
     end
 
+    #
+    #
+    #
+    def lookup(glob, dir)
+      dir  = File.expand_path(dir)
+      root = '/'
+      home = File.expand_path('~')
+      list = []
+
+      while dir != home && dir != root
+        list.concat(Dir.glob(File.join(dir, glob)))
+        break unless list.empty?
+        dir = File.dirname(dir)
+      end
+
+      list.first
+    end
+
     # Encapsualtes a command line option.
+    #
     class Option
       def initialize(method)
         @method = method

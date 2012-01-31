@@ -6,7 +6,7 @@ Require Executor library.
 
 Setup an example CLI subclass.
 
-    class MyCLI < Executable::Base
+    class MyCLI < Executable::Command
 
       # This is global option -g.
       def g=(bool)
@@ -68,11 +68,11 @@ should be clearly laid out as follows:
 
     Copyright (c) 2012
 
-=== Ronn
+=== Makrdown
 
 The help feature can also output ronn-style markdown,
 
-    @out = MyCLI::C1.help.ronn
+    @out = MyCLI::C1.help.markdown
 
 should be clearly laid out as follows:
 

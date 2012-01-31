@@ -6,7 +6,7 @@ Require Executable library.
 
 Setup an example CLI subclass.
 
-  class MyCLI < Executable::Base
+  class MyCLI < Executable::Command
 
     attr :result
 
@@ -38,7 +38,7 @@ Setup an example CLI subclass.
 
     end
 
-    class C2 < Executable::Base
+    class C2 < Executable::Command
 
       attr :result
 
@@ -112,14 +112,14 @@ that will have left over arguments, then an ArgumentError will be raised.
 
 How about a non-existenct subcommand.
 
-  expect Executable::NoCommandError do
+  expect NotImplementedError do
     cli = MyCLI.run('q')
     cli.result.assert == ['q']
   end
 
 How about an option only.
 
-  expect Executable::NoCommandError do
+  expect NotImplementedError do
     cli = MyCLI.run('-g')
     cli.result.assert == ['-g']
   end

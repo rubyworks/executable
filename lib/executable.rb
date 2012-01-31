@@ -13,7 +13,8 @@ require 'executable/domain'
 module Executable
 
   #
-  #
+  # When Exectuable is included into a class, the class is
+  # also extended by `Executable::Doamin`.
   #
   def self.included(base)
     base.extend Domain
@@ -33,33 +34,35 @@ module Executable
 public
 
   #
-  #
+  # Command invocation abstract method.
   #
   def call(*args)
     #puts self.class  # TODO: fix help
-    raise NoCommandError #NotImplementedError
+    raise NotImplementedError
   end
 
   #
-  # Convert executable to Proc object.
+  # Convert Executable to Proc object.
   #
   def to_proc
     lambda { |*args| call(*args) }
   end
 
-  #
-  # Access the help instance of the class of the command object.
-  #
-  def command_help
-    self.class.help
-  end
+  alias_method :inspect, :to_s
 
+  #
   # Output command line help.
+  #
   def to_s
-    self.class.to_s
+    self.class.help.to_s  # usage ?
   end
 
-private
+  #
+  # Access to underlying Help instance.
+  #
+  def cli
+    self.class.cli
+  end
 
   #
   # Override option_missing if needed. This receives the name of the option
@@ -70,9 +73,9 @@ private
     raise NoOptionError, opt
   end
 
-  # Alterate use as a base class.
+  # Base class alteranative ot using the mixin.
   #
-  class Base
+  class Command
     include Executable
   end
 

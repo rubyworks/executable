@@ -1,0 +1,19 @@
+hellocmd(1) - Say hello.
+========================
+
+## SYNOPSIS
+
+`hellocmd` [options...] [subcommand]
+
+## DESCRIPTION
+
+Say hello.
+
+## OPTIONS
+
+  * `--load=BOOL`:
+    Say it in uppercase?
+
+## COPYRIGHT
+
+Copyright (c) 2012

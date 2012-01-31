@@ -5,7 +5,8 @@ module Executable
   class Parser
 
     # 
-    # @param cli_class [CLI::Base] command class
+    # @param [Executable] cli_class
+    #   An executabe class.
     #
     def initialize(cli_class)
       @cli_class = cli_class
@@ -85,7 +86,7 @@ module Executable
         when /^-/
           parse_flags(obj, arg, argv, args)
         else
-          #if CLI::Base === obj
+          #if Executable === obj
           #  if cmd_class = obj.class.subcommands[arg]
           #    cmd  = cmd_class.new(obj)
           #    subc = cmd
@@ -110,11 +111,11 @@ module Executable
         raise ArgumentError, "#{x}"
       end
       if obj.respond_to?("#{x}=")
-        v = true  if v == 'true'   # yes or on ?
-        v = false if v == 'false'  # no or off ?
+        v = true  if v == 'true'   # yes or on  ?
+        v = false if v == 'false'  # no  or off ?
         obj.send("#{x}=", v)
       else
-        obj.option_missing(x, v) # argv?
+        obj.__send__(:option_missing, x, v) # argv?
       end
     end
 
@@ -133,14 +134,17 @@ module Executable
       elsif obj.respond_to?("#{x}!")
         invoke(obj, "#{x}!", argv)
       else
-        obj.option_missing(x, argv)
+        # call even if private method
+        obj.__send__(:option_missing, x, argv)
       end
     end
+
+    # TODO: parse_flags needs some thought concerning character
+    # spliting and arguments.
 
     #
     # Parse single-dash command-line option.
     #
-    # TODO: This needs some thought concerning character spliting and arguments.
     def parse_flags(obj, opt, argv, args)
       x = opt[1..-1]
       c = 0
@@ -155,7 +159,7 @@ module Executable
         elsif obj.respond_to?("#{k}!")
           invoke(obj, "#{k}!", argv)
         else
-          long = find_longer_option(obj, k)
+          long = find_long_option(obj, k)
           if long
             if long.end_with?('=') && obj.respond_to?(long.chomp('=')+'?')
               invoke(obj, long, [true])
@@ -163,7 +167,7 @@ module Executable
               invoke(obj, long, argv)
             end
           else
-            obj.option_missing(x, argv)
+            obj.__send__(:option_missing, x, argv)
           end
         end
       end
@@ -171,8 +175,9 @@ module Executable
 
     #
     #
-    # TODO: Sort alphabetically?
-    def find_longer_option(obj, char)
+    # @todo Sort alphabetically?
+    #
+    def find_long_option(obj, char)
       meths = obj.methods.map{ |m| m.to_s }
       meths = meths.select do |m|
         m.start_with?(char) and (m.end_with?('=') or m.end_with?('!'))
@@ -183,7 +188,7 @@ module Executable
     #
     #
     def invoke(obj, meth, argv)
-      m = Method === meth ? meth : obj.method(meth)
+      m = (Method === meth ? meth : obj.method(meth))
       a = []
       m.arity.abs.times{ a << argv.shift }
       m.call(*a)
