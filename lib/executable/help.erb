@@ -1,0 +1,12 @@
+<% usage %>
+<% text_description %>
+COMMANDS
+<% text_subcommands.each do |cmd, desc| %>
+<%= "  %-20s %s" % [cmd, desc] %>
+<% end %>
+OPTIONS
+<% text_options.each do |max, opt| %>
+  <%= "  #{opt.mark}%-#{max}s %s" % [opt.usage, opt.description] %>
+<% end %>
+<% footer %>
+
