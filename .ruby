@@ -1,33 +1,57 @@
---- 
-name: executable
-spec_version: 1.0.0
-repositories: 
-  public: git://github.com/rubyworks/cliable.git
-title: Executable
-requires: 
-- group: 
+---
+source:
+- meta
+authors:
+- name: 7rans
+  email: transfire@gmail.com
+copyrights:
+- holder: Rubyworks
+  year: '2009'
+  license: BSD-2-Clause
+replacements: []
+alternatives: []
+requirements:
+- name: qed
+  groups:
   - test
-  name: turn
-  version: 0+
-resources: 
-  code: http://github.com/rubyworks/executable
+  development: true
+- name: ae
+  groups:
+  - test
+  development: true
+- name: detroit
+  groups:
+  - build
+  development: true
+dependencies: []
+conflicts: []
+repositories:
+- uri: git://github.com/rubyworks/executable.git
+  scm: git
+  name: upstream
+resources:
   home: http://rubyworks.github.com/executable
-manifest: 
-- lib/executable.rb
-- meta/license/Apache2.txt
-- test/test_executable.rb
-- Profile
-- README.rdoc
-- History.rdoc
-- Version
-- NOTICE.rdoc
-version: 1.1.0
-licenses: 
-- Apache 2.0
-copyright: Copyright (c) 2008 Thomas Sawyer
-description: The Executable mixin is a very quick and and easy way to make almost any class usable via a command line interface. It simply uses writer methods as option setters, and the first command line argument as the method to call, with the subsequent arguments passed to the method.
-summary: Any class, a command-line interface.
-authors: 
-- Thomas Sawyer
-collection: RubyWorks
-created: 2008-08-08
+  code: http://github.com/rubyworks/executable
+  bugs: http://github.com/rubyworks/executable/issues
+  mail: http://groups.google.com/rubyworks-mailinglist
+  chat: irc://#rubyworks
+extra: {}
+load_path:
+- lib
+revision: 0
+created: '2008-08-08'
+summary: Commandline Object Mapper
+version: 1.2.0
+name: executable
+title: Executable
+description: ! 'Think of Executable as a *COM*, a Commandline Object Mapper,
+
+  in much the same way that ActiveRecord is an ORM,
+
+  an Object Relational Mapper. A class utilizing Executable
+
+  can define a complete command line tool using nothing more
+
+  than Ruby''s own method definitions.'
+organization: rubyworks
+date: '2012-01-30'
