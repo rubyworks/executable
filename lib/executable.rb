@@ -3,10 +3,9 @@
 require 'executable/errors'
 require 'executable/parser'
 require 'executable/help'
-require 'executable/config'
 require 'executable/utils'
 require 'executable/domain'
-require 'executable/dispatchable'
+require 'executable/dispatch'
 
 # Executable is a mixin for creating robust, inheritable and
 # reusable command line interfaces.
