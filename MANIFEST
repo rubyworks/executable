@@ -8,6 +8,7 @@ demo/04_manpage.rdoc
 demo/05_optparse_example.rdoc
 demo/06_delegate_example.rdoc
 demo/07_command_methods.rdoc
+demo/08_dispatach.rdoc
 demo/applique/ae.rb
 demo/applique/compare.rb
 demo/applique/exec.rb
@@ -15,9 +16,8 @@ demo/samples/bin/hello
 demo/samples/man/hello.1
 demo/samples/man/hello.1.html
 demo/samples/man/hello.1.ronn
-lib/executable/config.rb
 lib/executable/core_ext.rb
-lib/executable/dispatchable.rb
+lib/executable/dispatch.rb
 lib/executable/domain.rb
 lib/executable/errors.rb
 lib/executable/help.rb
