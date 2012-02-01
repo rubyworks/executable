@@ -100,14 +100,22 @@
     .wikistyle pre.console code{padding:0!important;font-size:100%!important;background-color:black!important;border:none!important;color:white!important;}
     .wikistyle pre.console span{color:#888!important;}
     .wikistyle pre.console span.command{color:yellow!important;}
-
-    .title { font-size: 2em; }
   </style>
 
   
 
   <!-- JQuery is needed -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript" language="javascript"></script>
+
+  <!-- Highlight.js -->
+  <script src="http://yandex.st/highlightjs/6.1/highlight.min.js"></script>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/6.1/styles/github.min.css">
+
+  <script>
+    $(document).ready(function() {
+      $('pre').each(function(i, e) {hljs.highlightBlock(e)});
+    });
+  </script>
 
 </head>
 
@@ -129,7 +137,7 @@
       <!-- TODO: find a preminatn image on web to use -->
       <!-- <img src="http://www.cdnjs.com/images/poweredbycloudflare.png" align="left" style="padding-right: 10px;" alt=""/> -->
 
-      <div class="title">Executable Demonstrations</div>
+      <div style="font-size: 2em">Executable Demonstrations</div>
 
       <h1>Table of Contents</h1>
 
@@ -441,6 +449,113 @@ manpage = Hello.cli.manpage
 manpage.assert == sample + '/man/hello.1'</pre>
 
 
+<h1>Subclass Example</h1>
+
+<p>Lets say we have a class that we would like to work with on the command
+line, but want to keep the class itself unchanaged without mixin.</p>
+
+<pre>class Hello
+  attr_accessor :name
+
+  def initialize(name=&quot;World&quot;)
+    @name = name
+  end
+
+  def hello
+    @output = &quot;Hello, #{name}!&quot;
+  end
+
+  def output
+    @output
+  end
+end</pre>
+
+<p>Rather then including Exectuable in the class directly, we can create a
+subclass and use it instead.</p>
+
+<pre>class HelloCommand &lt; Hello
+  include Executable
+
+  def call(*args)
+    hello
+  end
+end</pre>
+
+<p>Now we can execute the command perfectly well.</p>
+
+<pre>cmd = HelloCommand.execute(['hello', '--name=Fred'])
+cmd.output.assert == &quot;Hello, Fred!&quot;</pre>
+
+<p>And the original class remains undisturbed.</p>
+
+
+<h1>README Example</h1>
+
+<p>This is the example used in the documentation.</p>
+
+<pre>class Example
+  include Executable
+
+  attr_switch :quiet
+
+  def bread(*args)
+    [&quot;bread&quot;, quiet?, *args]
+  end
+
+  def butter(*args)
+    [&quot;butter&quot;, quiet?, *args]
+  end
+
+  # Route call to methods.
+  def call(name, *args)
+    meth = public_method(name)
+    meth.call(*args)
+  end
+end</pre>
+
+<p>Use a subcommand and an argument.</p>
+
+<pre>c, a = Example.parse(['butter', 'yum'])
+r = c.call(*a)
+r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]</pre>
+
+<p>A subcommand and a boolean option.</p>
+
+<pre>c, a = Example.parse(['bread', '--quiet'])
+r = c.call(*a)
+r.assert == [&quot;bread&quot;, true]</pre>
+
+
+<h2>Legacy/Dispath</h2>
+
+<p>The Dispatch mixin, which is also called Legacy b/c this is how older
+version of Executable worked, provides Executable with a `#call` method
+that automatically routes the to a method given by the first argument.</p>
+
+<pre>class DispatchExample &lt; Executable::Command
+  include Legacy
+
+  attr :result
+
+  def foo
+    @result = :foo
+  end
+
+  def bar
+    @result = :bar
+  end
+
+end</pre>
+
+<p>Now when we invoke the command, the</p>
+
+<pre>eg = DispatchExample.run('foo')
+eg.result.assert == :foo
+
+eg = DispatchExample.run('bar')
+eg.result.assert == :bar</pre>
+
+
 <h2>OptionParser Example</h2>
 
 <p>This example mimics the one given in optparse.rb documentation.</p>
@@ -592,113 +707,6 @@ cli.options.record_separator.assert == 032</pre>
 <pre>cli = ExampleCLI.execute('--inplace txt')
 cli.options.extension.assert == '.txt'
 cli.options.inplace.assert == true</pre>
-
-
-<h1>Subclass Example</h1>
-
-<p>Lets say we have a class that we would like to work with on the command
-line, but want to keep the class itself unchanaged without mixin.</p>
-
-<pre>class Hello
-  attr_accessor :name
-
-  def initialize(name=&quot;World&quot;)
-    @name = name
-  end
-
-  def hello
-    @output = &quot;Hello, #{name}!&quot;
-  end
-
-  def output
-    @output
-  end
-end</pre>
-
-<p>Rather then including Exectuable in the class directly, we can create a
-subclass and use it instead.</p>
-
-<pre>class HelloCommand &lt; Hello
-  include Executable
-
-  def call(*args)
-    hello
-  end
-end</pre>
-
-<p>Now we can execute the command perfectly well.</p>
-
-<pre>cmd = HelloCommand.execute(['hello', '--name=Fred'])
-cmd.output.assert == &quot;Hello, Fred!&quot;</pre>
-
-<p>And the original class remains undisturbed.</p>
-
-
-<h1>README Example</h1>
-
-<p>This is the example used in the documentation.</p>
-
-<pre>class Example
-  include Executable
-
-  attr_switch :quiet
-
-  def bread(*args)
-    [&quot;bread&quot;, quiet?, *args]
-  end
-
-  def butter(*args)
-    [&quot;butter&quot;, quiet?, *args]
-  end
-
-  # Route call to methods.
-  def call(name, *args)
-    meth = public_method(name)
-    meth.call(*args)
-  end
-end</pre>
-
-<p>Use a subcommand and an argument.</p>
-
-<pre>c, a = Example.parse(['butter', 'yum'])
-r = c.call(*a)
-r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]</pre>
-
-<p>A subcommand and a boolean option.</p>
-
-<pre>c, a = Example.parse(['bread', '--quiet'])
-r = c.call(*a)
-r.assert == [&quot;bread&quot;, true]</pre>
-
-
-<h2>Legacy/Dispath</h2>
-
-<p>The Dispatch mixin, which is also called Legacy b/c this is how older
-version of Executable worked, provides Executable with a `#call` method
-that automatically routes the to a method given by the first argument.</p>
-
-<pre>class DispatchExample &lt; Executable::Command
-  include Legacy
-
-  attr :result
-
-  def foo
-    @result = :foo
-  end
-
-  def bar
-    @result = :bar
-  end
-
-end</pre>
-
-<p>Now when we invoke the command, the</p>
-
-<pre>eg = DispatchExample.run('foo')
-eg.result.assert == :foo
-
-eg = DispatchExample.run('bar')
-eg.result.assert == :bar</pre>
 
 
 
