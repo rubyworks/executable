@@ -44,15 +44,8 @@ module Executable
       @subcmds = {}
     end
 
-    #alias_method :inspect, :to_s
-
-    # Set file and line under which the Executable object is defined.
     #
-    # @deprecated
-    def setup(file, line=nil)
-      @file = file
-      @line = line
-    end
+    alias_method :inspect, :to_s
 
     #
     # The Executable subclass to which this help applies.
