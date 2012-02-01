@@ -1,5 +1,6 @@
 #!mast -x Rakefile .ruby .yardopts demo lib meta test [A-Z]*.*
 .ruby
+.yardopts
 demo/00_introduction.rdoc
 demo/01_single_command.rdoc
 demo/02_multiple_commands.rdoc
