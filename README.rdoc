@@ -54,7 +54,7 @@ For example, here is a simple "Hello, World!" commandline tool.
       include Executable
 
       # Say it in uppercase?
-      def load=(bool)
+      def loud=(bool)
         @loud = bool
       end
 
