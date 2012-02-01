@@ -1,5 +1,3 @@
-ignore 'pkg','doc','log','web','work'
-
 task :default => [:test]
 
 desc "run unit tests (needs rubytest)"
