@@ -1,4 +1,4 @@
-ignore 'pkg','doc','web','work'
+ignore 'pkg','doc','log','web','work'
 
 task :default => [:test]
 
