@@ -1,7 +1,8 @@
 == No Subcommmands
 
-This example demonstrates using CLI::Base to create a simple command line
-interface without subcommands.
+This example demonstrates using Executable::Command to create a simple command line
+interface without subcommands. (Note the Executable mixin could be used just
+as well).
 
     class NoSubCommandCLI < Executable::Command
 
@@ -38,6 +39,6 @@ Execute the CLI on an example command line.
 There are two important things to notices heres. Frist, that #main is being
 called in each case. It is the method called with no other subcommands are
 defined. And second, the fact the a `o?` method is defined to compliment the
-`o=` writer, informs CLI::Base that `-o` is an option _flag_, not taking
+`o=` writer, informs Executable that `-o` is an option _flag_, not taking
 any parameters.
 
