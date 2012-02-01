@@ -19,6 +19,8 @@ module Executable
     # @param argv [Array,String] command-line arguments
     #
     def parse(argv=ARGV)
+      # duplicate to make sure ARGV stay intact.
+      argv = argv.dup
       argv = parse_shellwords(argv)
 
       cmd, argv = parse_subcommand(argv)
