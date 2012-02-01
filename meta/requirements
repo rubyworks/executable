@@ -1,6 +1,6 @@
 ---
-- detroit (build)
-- qed     (test)
-- ae      (test)
-
+- qed       (test)
+- ae        (test)
+- detroit   (build)
+- simplecov (build)
 
