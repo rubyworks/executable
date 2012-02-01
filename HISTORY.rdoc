@@ -4,11 +4,11 @@
 
 Version 1.2.0 is complete rewrite of Executable. Actually it was decided that
 the old design was too simplistic in it design concept, so another library
-that we had been working on, called Executioner and briefly CLI::Base, was
-ported over and with some API changes is now the new Executable project.
+that was in the works, called Executioner, and briefly CLI::Base, was
+ported over. And with some API changes, it is now the new Executable project.
 The idea of the project is generally the same, but Executable now offers
-more features, such a good help output and and namespace-based subcomamnds.
-Of course to accommodate all this the API had to change some over
+more features, such as good help output and namespace-based subcomamnds.
+Of course, to accommodate all this the API had to change some over
 the previous version, so be sure to read the API documentation.
 
 Changes:
