@@ -141,15 +141,18 @@
       
 <h1>Executable</h1>
 
+<p>Require Executable library.</p>
+
+<pre>require 'executable'</pre>
+
 
 <h2>No Subcommmands</h2>
 
-<p>This example demonstrates using CLI::Base to create a simple command line
-interface without subcommands.</p>
+<p>This example demonstrates using Executable::Command to create a simple
+command line interface without subcommands. (Note the Executable mixin
+could be used just as well).</p>
 
-<pre>require 'executable'
-
-class NoSubCommandCLI &lt; Executable::Command
+<pre>class NoSubCommandCLI &lt; Executable::Command
 
   attr :result
 
@@ -184,20 +187,15 @@ cli.result.assert == 'with'</pre>
 <p>There are two important things to notices heres. Frist, that #main is being
 called in each case. It is the method called with no other subcommands are
 defined. And second, the fact the a `o?` method is defined to compliment
-the `o=` writer, informs CLI::Base that `-o` is an option <em>flag</em>,
+the `o=` writer, informs Executable that `-o` is an option <em>flag</em>,
 not taking any parameters.</p>
 
 
 <h2>Multiple Subcommmands</h2>
 
-<p>Require Executable library.</p>
-
-<pre>require 'executable'</pre>
-
 <p>Setup an example CLI subclass.</p>
 
 <pre>class MyCLI &lt; Executable::Command
-
   attr :result
 
   def initialize
@@ -212,8 +210,8 @@ not taking any parameters.</p>
     @result.include?(&quot;g&quot;)
   end
 
+  #
   class C1 &lt; self
-
     def call
       @result &lt;&lt; &quot;c1&quot;
     end
@@ -225,11 +223,10 @@ not taking any parameters.</p>
     def o2=(value)
       @result &lt;&lt; &quot;c1_o2 #{value}&quot;
     end
-
   end
 
+  #
   class C2 &lt; Executable::Command
-
     attr :result
 
     def initialize
@@ -251,7 +248,6 @@ not taking any parameters.</p>
     def o2?
       @result.include?(&quot;c2_o2&quot;)
     end
-
   end
 
 end</pre>
@@ -449,8 +445,7 @@ manpage.assert == sample + '/man/hello.1'</pre>
 
 <p>This example mimics the one given in optparse.rb documentation.</p>
 
-<pre>require 'executable'
-require 'ostruct'
+<pre>require 'ostruct'
 require 'time'
 
 class ExampleCLI &lt; Executable::Command
@@ -674,6 +669,36 @@ r.assert == [&quot;butter&quot;, nil, &quot;yum&quot;]</pre>
 <pre>c, a = Example.parse(['bread', '--quiet'])
 r = c.call(*a)
 r.assert == [&quot;bread&quot;, true]</pre>
+
+
+<h2>Legacy/Dispath</h2>
+
+<p>The Dispatch mixin, which is also called Legacy b/c this is how older
+version of Executable worked, provides Executable with a `#call` method
+that automatically routes the to a method given by the first argument.</p>
+
+<pre>class DispatchExample &lt; Executable::Command
+  include Legacy
+
+  attr :result
+
+  def foo
+    @result = :foo
+  end
+
+  def bar
+    @result = :bar
+  end
+
+end</pre>
+
+<p>Now when we invoke the command, the</p>
+
+<pre>eg = DispatchExample.run('foo')
+eg.result.assert == :foo
+
+eg = DispatchExample.run('bar')
+eg.result.assert == :bar</pre>
 
 
 
