@@ -2,7 +2,6 @@
 
 This example mimics the one given in optparse.rb documentation.
 
-    require 'executable'
     require 'ostruct'
     require 'time'
 
