@@ -38,7 +38,7 @@ resources:
   code: http://github.com/rubyworks/executable
   bugs: http://github.com/rubyworks/executable/issues
   mail: http://groups.google.com/rubyworks-mailinglist
-  chat: irc://#rubyworks
+  chat: irc://chat.us.freenode.net#rubyworks
 extra: {}
 load_path:
 - lib
