@@ -27,6 +27,22 @@ module Executable
     end
 
     #
+    # 
+    #
+    def alias_switch(name, origin)
+      alias_method "#{name}=", "#{origin}="
+      alias_method "#{name}?", "#{origin}?"
+    end
+
+    #
+    #
+    #
+    def alias_accessor(name, origin)
+      alias_method "#{name}=", "#{origin}="
+      alias_method "#{name}",  "#{origin}"
+    end
+
+    #
     # Inspection method. This must be redefined b/c #to_s is overridden.
     #
     def inspect
@@ -93,7 +109,9 @@ module Executable
         consts.inject({}) do |h, c|
           c = const_get(c)
           if Class === c && Executable > c
-            n = c.name.split('::').last.downcase
+            n = c.name.split('::').last
+            n = n.chomp('Command').chomp('CLI')
+            n = n.downcase
             h[n] = c
           end
           h

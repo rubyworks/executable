@@ -80,7 +80,7 @@ For example, here is a simple "Hello, World!" commandline tool.
     end
 
 To make the command available on the command line, add an executable
-to your project passing ARGV to the #execute or #run methods.
+to your project calling the #execute or #run methods.
 
     #!usr/bin/env ruby
     require 'hello.rb'
