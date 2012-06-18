@@ -110,7 +110,7 @@ Executable can also generate help text for commands.
 
 If you look back at the class definition you can see it's pulling
 comments from the source to provide descriptions. It pulls the 
-description the command itself from the `#call` method.
+description for the command itself from the `#call` method.
 
 Basic help like this is fine for personal tools, but for public facing
 production applications it is desirable to utilize manpages. To this end,
