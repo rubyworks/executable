@@ -1,0 +1,71 @@
+---
+type: ruby
+revision: 2013
+sources:
+- var
+authors:
+- name: 7rans
+  email: transfire@gmail.com
+organizations: []
+requirements:
+- groups:
+  - test
+  development: true
+  name: qed
+- groups:
+  - test
+  development: true
+  name: ae
+- groups:
+  - build
+  development: true
+  name: detroit
+- groups:
+  - build
+  development: true
+  name: simplecov
+conflicts: []
+alternatives: []
+resources:
+- type: home
+  uri: http://rubyworks.github.com/executable
+  label: Homepage
+- type: code
+  uri: http://github.com/rubyworks/executable
+  label: Source Code
+- type: bugs
+  uri: http://github.com/rubyworks/executable/issues
+  label: Issue Tracker
+- type: mail
+  uri: http://groups.google.com/rubyworks-mailinglist
+  label: Mailing List
+- type: chat
+  uri: irc://chat.us.freenode.net#rubyworks
+  label: IRC Channel
+repositories:
+- name: upstream
+  scm: git
+  uri: git://github.com/rubyworks/executable.git
+categories: []
+paths:
+  load:
+  - lib
+copyrights:
+- holder: Rubyworks
+  year: '2008'
+  license: BSD-2-Clause
+created: '2008-08-08'
+summary: Commandline Object Mapper
+version: 1.2.0
+name: executable
+title: Executable
+description: ! 'Think of Executable as a *COM*, a Commandline Object Mapper,
+
+  in much the same way that ActiveRecord is an ORM,
+
+  an Object Relational Mapper. A class utilizing Executable
+
+  can define a complete command line tool using nothing more
+
+  than Ruby''s own method definitions.'
+date: '2012-12-18'
