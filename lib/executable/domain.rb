@@ -4,6 +4,28 @@ module Executable
   module Domain
 
     #
+    def usage_name
+      list = []
+      ancestors.each do |ancestor|
+        break if Executable == ancestor
+        list.unshift calculate_command_name(ancestor).to_s.strip
+      end
+      list.reject{|n| n.empty?}.join(" ")
+    end
+
+    #
+    def calculate_command_name(ancestor)
+      if ancestor.methods(false).include?(:command_name)
+        command_name.to_s
+      else
+        cname = ancestor.name.sub(/\#\<.*?\>\:\:/,'').split('::').last.downcase
+        cname.chomp('command').chomp('cli')
+      end
+    end
+
+    private :calculate_command_name
+
+    #
     # Helper method for creating switch attributes.
     #
     # This is equivalent to:

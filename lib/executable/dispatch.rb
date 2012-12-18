@@ -2,7 +2,7 @@ module Executable
 
   # Variation of Executable which provides basic compatibility with
   # previous versions of Executable. It provides a call method that
-  # automatically dispatches to publich methods.
+  # automatically dispatches to public methods.
   #
   # Among other uses, Dispatch can be useful for dropping into any class
   # as a quick and dirty way to work with it on the command line.

@@ -22,7 +22,7 @@ module Executable
 
   #
   # Default initializer, simply takes a hash of settings
-  # to set attributes via writer methods. Not existnt
+  # to set attributes via writer methods. Not existant
   # attributes are simply ignored.
   #
   def initialize(settings={})

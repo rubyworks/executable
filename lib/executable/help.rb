@@ -63,10 +63,7 @@ module Executable
     # @method name(text=nil)
     #
     section(:name) do
-      str = cli_class.name.sub(/\#\<.*?\>\:\:/,'').downcase.gsub('::','-')
-      str.chomp!('command')
-      str.chomp!('cli')
-      str
+      cli_class.usage_name
     end
 
     #
@@ -122,7 +119,7 @@ module Executable
     #
     # Show help.
     #
-    # @todo man-pages will probably fail on Windows
+    # @todo man-pages will probably fail on Windows.
     #
     def show_help(hint=nil)
       if file = manpage(hint)
@@ -131,6 +128,9 @@ module Executable
         puts self
       end
     end
+
+    #
+    alias :show :show_help
 
     #
     def show_manpage(file)
@@ -155,8 +155,10 @@ module Executable
           dir = File.dirname(file)
         end
 
+        man_name = name.gsub(/\s+/, '-') + '.1'
+
         if dir
-          glob = "man/{man1/,}#{name}.1"
+          glob = "man/{man1/,}#{man_name}"
           lookup(glob, dir)
         else
           nil
