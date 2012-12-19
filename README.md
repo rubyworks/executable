@@ -171,8 +171,8 @@ generally the place get in touch for anything specific to this project.
 
 Executable is copyrighted open source software.
 
-    Copyright (c) 2008 Rubyworks (BSD-2-Clause License)
+    Copyright (c) 2008 Rubyworks (BSD-2-Clause)
 
-It can be distributed and modified in accordance with the *BSD-2-Clause* license.
+It can be distributed and modified in accordance with the **BSD-2-Clause** license.
 
 See LICENSE.txt for details.
