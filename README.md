@@ -84,7 +84,6 @@ to your project calling the #execute or #run methods.
 If we named this file `hello`, set its execute flag and made it available
 on our systems $PATH, then:
 
-```ruby
     $ hello
     Hello, World!
 
@@ -93,7 +92,6 @@ on our systems $PATH, then:
 
     $ hello --loud John
     HELLO, JOHN!
-```
 
 Executable can also generate help text for commands.
 
