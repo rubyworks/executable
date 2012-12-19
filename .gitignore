@@ -5,3 +5,4 @@ log
 pkg
 web
 DEMO.md
+*.lock
