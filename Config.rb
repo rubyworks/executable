@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
-# Setup QED.
-config :qed do
-  # Create coverage report.
-  profile :cov do
+# Code coverage.
+profile :cov do
+
+  # Setup QED.
+  config :qed do
     require 'simplecov'
     SimpleCov.start do
       coverage_dir 'log/coverage'
@@ -11,4 +12,5 @@ config :qed do
       #add_group "RSpec", "lib/assay/rspec.rb"
     end
   end
+
 end
