@@ -30,7 +30,7 @@ syntax. No special DSL is required.
 * Help doesn't handle aliases well (yet).
 
 
-## Instructions
+## Overview
 
 CLIs can be built by using a Executable as a mixin, or by subclassing 
 `Executable::Command`. Methods seemlessly handle command-line options.
@@ -122,8 +122,9 @@ to generate the manpages. What's particularly cool about Executable,
 is that once we have a manpage in the standard `man/` location in our project,
 the `#show_help` method will use it instead of the plain text.
 
-For a more detail example see [QED](demo.html)
-and [API](http://rubydoc.info/gems/executable/frames) documentation.
+For a more detailed example see [QED](http://rubyworks.github.com/executable/demo.html),
+[API](http://rubydoc.info/gems/executable/frames) documentation and, in particular,
+the [Wiki](http://wiki.github.com/rubyworks/).
 
 
 ## Installation
