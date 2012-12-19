@@ -56,11 +56,11 @@ For example, here is a simple "Hello, World!" commandline tool.
       end
 
       # Show this message.
-      def help?
+      def help!
         cli.show_help
         exit
       end
-      alias :h? :help?
+      alias :h! :help1
 
       # Say hello.
       def call(name)
