@@ -4,20 +4,17 @@ module Exectuable
   DIRECTORY = File.dirname(__FILE__)
 
   #
-  def self.version
-    @package ||= (
-      require 'yaml'
-      YAML.load(File.new(DIRECTORY + '/version.yml'))
-    )
+  def self.const_missing(name)
+    index[name.to_s.downcase] || super(name)
   end
 
   #
-  def self.const_missing(name)
-    version[name.to_s.downcase] || super(name)
+  def self.index
+    @index ||= (
+      require 'yaml'
+      YAML.load(File.new(DIRECTORY + '/../executable.yml'))
+    )
   end
-
-  # because Ruby 1.8~ gets in the way
-  remove_const(:VERSION) if const_defined?(:VERSION)
 
 end
 

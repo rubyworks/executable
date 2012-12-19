@@ -56,7 +56,7 @@ copyrights:
   license: BSD-2-Clause
 created: '2008-08-08'
 summary: Commandline Object Mapper
-version: 1.2.0
+version: 1.2.1
 name: executable
 title: Executable
 description: ! 'Think of Executable as a *COM*, a Commandline Object Mapper,
