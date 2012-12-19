@@ -1,4 +1,4 @@
-= Subclass Example
+## Subclass Example
 
 Lets say we have a class that we would like to work with on
 the command line, but want to keep the class itself unchanaged

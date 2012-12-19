@@ -1,4 +1,4 @@
-= README Example
+## README Example
 
 This is the example used in the documentation.
 

@@ -1,4 +1,4 @@
-== Legacy/Dispath
+## Legacy/Dispath
 
 The Dispatch mixin, which is also called Legacy b/c this is how older
 version of Executable worked, provides Executable with a `#call` method

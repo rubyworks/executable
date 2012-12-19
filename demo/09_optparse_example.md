@@ -1,4 +1,4 @@
-== OptionParser Example
+## OptionParser Example
 
 This example mimics the one given in optparse.rb documentation.
 

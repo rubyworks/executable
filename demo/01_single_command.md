@@ -1,4 +1,4 @@
-== No Subcommmands
+## No Subcommmands
 
 This example demonstrates using Executable::Command to create a simple command line
 interface without subcommands. (Note the Executable mixin could be used just

@@ -1,4 +1,4 @@
-== Multiple Subcommmands
+## Multiple Subcommmands
 
 Setup an example CLI subclass.
 

@@ -1,4 +1,4 @@
-== Command Help
+## Command Help
 
 Executable Commands can generate help output. It does this by extracting
 the commenst associated with the option methods. A description of the

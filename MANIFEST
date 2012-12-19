@@ -30,7 +30,8 @@ lib/executable.rb
 lib/executable.yml
 test/test_executable.rb
 HISTORY.rdoc
+CONTRIBUTE.md
 DEMO.rdoc
+LICENSE.txt
 README.rdoc
-COPYING.rdoc
 Config.rb
