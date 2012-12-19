@@ -60,7 +60,7 @@ For example, here is a simple "Hello, World!" commandline tool.
         cli.show_help
         exit
       end
-      alias :h! :help1
+      alias :h! :help!
 
       # Say hello.
       def call(name)
