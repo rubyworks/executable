@@ -1,14 +1,10 @@
-= Executable
-
-{Website}[http://rubyworks.github.com/executable] |
-{Source Code}[http://github.com/rubyworks/executable] |
-{Report Issue}[http://github.com/rubyworks/executable/features] |
-{#rubyworks}[irc://irc.freenode.org/rubyworks]
-
-{<img src="http://travis-ci.org/rubyworks/executable.png"/>}[http://travis-ci.org/rubyworks/executable]
+[Website](http://rubyworks.github.com/executable) |
+[Report Issue](http://github.com/rubyworks/executable/features) |
+[Source Code](http://github.com/rubyworks/executable)
+( [![Build Status](https://secure.travis-ci.org/rubyworks/indexer.png)](http://travis-ci.org/rubyworks/indexer) )
 
 
-== DESCRIPTION
+# Executable
 
 Executable is to the commandline, what ActiveRecord is the database. 
 You can think of Executable as a *COM*, a Command-line Object Mapper,
@@ -18,7 +14,7 @@ a complete command line tool using nothing more than Ruby's standard
 syntax. No special DSL is required. 
 
 
-== FEATURES
+## Features
 
 * Easy to use, just mixin or subclass.
 * Define #call to control the command procedure.
@@ -28,18 +24,13 @@ syntax. No special DSL is required.
 * Generate help in plain text or markdown.
 
 
-== LIMITATIONS
+## Limitations
 
 * Ruby 1.9+ only.
 * Help doesn't handle aliases well (yet).
 
 
-== RELEASE NOTES
-
-Please see HISTORY.rdoc file.
-
-
-== SYNOPSIS
+## Instructions
 
 CLIs can be built by using a Executable as a mixin, or by subclassing 
 `Executable::Command`. Methods seemlessly handle command-line options.
@@ -127,18 +118,19 @@ For a more detail example see {QED}[demo.html]
 and {API}[http://rubydoc.info/gems/executable/frames] documentation.
 
 
-== INSTALLATION
+## Installation
 
 Install with RubyGems in the usual fashion.
 
     $ gem install executable
 
 
-== LEGAL
+## Copyrights
 
-Copyright (c) 2008 Rubyworks
+Executable is copyrighted open source software.
 
-Distributable in accordance with the *BSD-2-Clause* license.
+    Copyright (c) 2008 Rubyworks (BSD-2-Clause License)
 
-See COPYING.rdoc for licensing details.
+It can be distributed and modified in accordance with the *BSD-2-Clause* license.
 
+See LICENSE.txt for details.
