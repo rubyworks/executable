@@ -1,6 +1,18 @@
-= RELEASE HISTORY
+# RELEASE HISTORY
 
-== 1.2.0 / 2012-01-31
+## 1.2.1 / 2012-12-19
+
+This release imporves the help output and manpage lookup
+as well as a few helpful additions the the API.
+
+Changes:
+
+* Improve manpage lookup.
+* Improve overall help output.
+* Add alias_switch and alias_accessor helpers.
+
+
+## 1.2.0 / 2012-01-31
 
 Version 1.2.0 is complete rewrite of Executable. Actually it was decided that
 the old design was too simplistic in it design concept, so another library
@@ -20,7 +32,7 @@ Changes:
 * Supports manpage look-up and display.
 
 
-== 1.1.0 / 2011-04-21
+## 1.1.0 / 2011-04-21
 
 This release simplifies Executable, removing the #option_missing method
 and using the standard #method_missing callback instead. Along with this
@@ -44,7 +56,7 @@ Changes:
   * The #method_missing callback takes the value of the option being set.
 
 
-== 1.0.0 / 2011-04-15
+## 1.0.0 / 2011-04-15
 
 This is the initialize release of Executable (as a stand alone project).
 Executable is a mixin that can turn any class into an commandline interface.
