@@ -1,4 +1,4 @@
-#!mast -x Rakefile .ruby .yardopts demo lib meta test [A-Z]*.*
+#!mast -x *.lock .index .ruby .yardopts bin demo lib share spec test [A-Z]*.*
 .ruby
 .yardopts
 demo/00_introduction.rdoc
