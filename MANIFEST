@@ -18,6 +18,7 @@ demo/samples/bin/hello
 demo/samples/man/hello.1
 demo/samples/man/hello.1.html
 demo/samples/man/hello.1.ronn
+lib/executable/completion.rb
 lib/executable/core_ext.rb
 lib/executable/dispatch.rb
 lib/executable/domain.rb
