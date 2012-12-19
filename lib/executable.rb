@@ -3,6 +3,7 @@
 require 'executable/errors'
 require 'executable/parser'
 require 'executable/help'
+require 'executable/completion'
 require 'executable/utils'
 require 'executable/domain'
 require 'executable/dispatch'
@@ -58,7 +59,7 @@ public
   end
 
   #
-  # Access to underlying Help instance.
+  # Access to underlying cli instance.
   #
   def cli
     self.class.cli

@@ -25,7 +25,12 @@ module Executable
 
       cmd, argv = parse_subcommand(argv)
       cli  = cmd.new
-      args = parse_arguments(cli, argv)
+
+      if argv.first == "_"
+        cli = Completion.new(cli.class)
+      else
+        args = parse_arguments(cli, argv)
+      end
 
       return cli, args
     end
@@ -141,8 +146,7 @@ module Executable
       end
     end
 
-    # TODO: parse_flags needs some thought concerning character
-    # spliting and arguments.
+    # TODO: parse_flags needs some thought concerning character spliting and arguments.
 
     #
     # Parse single-dash command-line option.

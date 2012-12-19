@@ -30,7 +30,9 @@ module Executable
       }
     end
 
+    #
     # Setup new help object.
+    #
     def initialize(cli_class)
       @cli_class = cli_class
 
