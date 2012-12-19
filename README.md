@@ -39,6 +39,7 @@ methods (those ending in '?') modify them to be boolean switches.
 
 For example, here is a simple "Hello, World!" commandline tool.
 
+```ruby
     require 'executable'
 
     class HelloCommand
@@ -69,17 +70,21 @@ For example, here is a simple "Hello, World!" commandline tool.
         puts str
       end
     end
+```
 
 To make the command available on the command line, add an executable
 to your project calling the #execute or #run methods.
 
+```ruby
     #!usr/bin/env ruby
     require 'hello.rb'
     HelloCommand.run
+```
 
 If we named this file `hello`, set its execute flag and made it available
 on our systems $PATH, then:
 
+```ruby
     $ hello
     Hello, World!
 
@@ -88,6 +93,7 @@ on our systems $PATH, then:
 
     $ hello --loud John
     HELLO, JOHN!
+```
 
 Executable can also generate help text for commands.
 
@@ -108,14 +114,14 @@ production applications it is desirable to utilize manpages. To this end,
 Executable provides Markdown formatted help as well. We can access this,
 for example, via `HelloCommand.help.markdown`. The idea with this is that
 we can save the output to `man/hello.ronn` or copy it the top of our `bin/`
-file, edit it to perfection and then use tools such a {ronn}[https://github.com/rtomayko/ronn],
-{binman}[https://github.com/sunaku/binman] or {md2man}[https://github.com/sunaku/md2man]
+file, edit it to perfection and then use tools such a [ronn](https://github.com/rtomayko/ronn),
+[binman](https://github.com/sunaku/binman) or [md2man](https://github.com/sunaku/md2man)
 to generate the manpages. What's particularly cool about Executable,
 is that once we have a manpage in the standard `man/` location in our project,
 the `#show_help` method will use it instead of the plain text.
 
-For a more detail example see {QED}[demo.html]
-and {API}[http://rubydoc.info/gems/executable/frames] documentation.
+For a more detail example see [QED](demo.html)
+and [API](http://rubydoc.info/gems/executable/frames) documentation.
 
 
 ## Installation
