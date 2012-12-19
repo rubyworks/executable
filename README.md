@@ -134,18 +134,37 @@ Install with RubyGems in the usual fashion.
     $ gem install executable
 ```
 
-## CONTRIBUTING
+## Contributing
 
-Executable is a Rubyworks project. As such we largely use in house tools
-for development.
+Executable is a [Rubyworks](http://rubyworks.github.com) project. As such it largely
+uses in-house tools for development.
+
+### Submitting Patches
+
+If it is a very small change, just pasting it to an issue is fine. For anything more than
+this please send us a traditional patch, but even better use Github pull requests. 
+Good contributions have the following:
+
+* Well documented code following the conventions of the project.
+* Clearly written tests with good test coverage written using the project's chosen test framework.
+* Use of a git topic branch to keep the change set well isolated.
+
+The more of these bullet points a pull request covers, the more likely and quickly it will
+be accepted and merged.
 
 ### Testing
 
-QED and Microtest are being used for this project.
+[QED](http://rubyworks.github.com/qed) and [Microtest](http://rubyworks.github.com/microtest)
+are used for this project. To run the QED demos just run the `qed` command, probably with bundler,
+so `bundle exec qed`. And to run the microtests you can use `rubytest test/`, again with bundler,
+`bundle exec rubytest test/`.
 
 ### Getting In Touch
 
-* [#rubyworks](irc://irc.freenode.org/rubyworks)
+For direct dialog we have an IRC channel, #rubyworks on freenode. But it's not always manned,
+so a [mailing list](http://groups.google.com/groups/rubyworks-mailinglist) is also available.
+Of course these days, the GitHub [issues page](http://github.com/rubyworks/executable) is
+generally the place get in touch for anything specific to this project.
 
 
 ## Copyrights
