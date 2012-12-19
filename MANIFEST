@@ -1,4 +1,5 @@
 #!mast -x *.lock .index .ruby .yardopts bin demo lib share spec test [A-Z]*.*
+.index
 .ruby
 .yardopts
 demo/00_introduction.rdoc
@@ -6,10 +7,10 @@ demo/01_single_command.rdoc
 demo/02_multiple_commands.rdoc
 demo/03_help_text.rdoc
 demo/04_manpage.rdoc
-demo/05_optparse_example.rdoc
 demo/06_delegate_example.rdoc
 demo/07_command_methods.rdoc
 demo/08_dispatach.rdoc
+demo/09_optparse_example.rdoc
 demo/applique/ae.rb
 demo/applique/compare.rb
 demo/applique/exec.rb
@@ -26,20 +27,10 @@ lib/executable/parser.rb
 lib/executable/utils.rb
 lib/executable/version.rb
 lib/executable.rb
-meta/authors
-meta/copyrights
-meta/created
-meta/description
-meta/name
-meta/organization
-meta/repositories
-meta/requirements
-meta/resources
-meta/summary
-meta/version
+lib/executable.yml
 test/test_executable.rb
 HISTORY.rdoc
 DEMO.rdoc
-Schedule.reap
 README.rdoc
 COPYING.rdoc
+Config.rb
