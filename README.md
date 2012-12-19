@@ -84,6 +84,7 @@ to your project calling the #execute or #run methods.
 If we named this file `hello`, set its execute flag and made it available
 on our systems $PATH, then:
 
+```
     $ hello
     Hello, World!
 
@@ -92,9 +93,11 @@ on our systems $PATH, then:
 
     $ hello --loud John
     HELLO, JOHN!
+```
 
 Executable can also generate help text for commands.
 
+```
     $ hello --help
     USAGE: hello [options]
 
@@ -102,6 +105,7 @@ Executable can also generate help text for commands.
 
     --loud      Say it in uppercase?
     --help      Show this message
+```
 
 If you look back at the class definition you can see it's pulling
 comments from the source to provide descriptions. It pulls the 
@@ -126,8 +130,9 @@ and [API](http://rubydoc.info/gems/executable/frames) documentation.
 
 Install with RubyGems in the usual fashion.
 
+```
     $ gem install executable
-
+```
 
 ## CONTRIBUTING
 
