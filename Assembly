@@ -26,6 +26,6 @@ qedoc:
   title: Executable Demonstrations
   files: demo/
   output:
-    - DEMO.rdoc
+    - DEMO.md
     - web/demo.html
 
