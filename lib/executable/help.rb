@@ -218,10 +218,11 @@ module Executable
     def markdown
       commands = text_subcommands
       options  = text_options
+      dashname = name.sub(/\s+/, '-')
 
       s = []
 
-      h = "#{name}(1) - #{text_description}"
+      h = "#{dashname}(1) - #{text_description}"
       s << h + "\n" + ("=" * h.size)
 
       s << "## SYNOPSIS"

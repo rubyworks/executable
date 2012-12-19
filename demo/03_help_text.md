@@ -62,7 +62,7 @@ The help output,
 
 should be clearly laid out as follows:
 
-    Usage: mycli-c1 [options...] [subcommand]
+    Usage: my c1 [options...] [subcommand]
 
     This does c1.
 
@@ -81,12 +81,12 @@ The help feature can also output ronn-style markdown,
 
 should be clearly laid out as follows:
 
-    mycli-c1(1) - This does c1.
-    ===========================
+    my-c1(1) - This does c1.
+    ========================
 
     ## SYNOPSIS
 
-    `mycli-c1` [options...] [subcommand]
+    `my c1` [options...] [subcommand]
 
     ## DESCRIPTION
 

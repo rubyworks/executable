@@ -1,10 +1,10 @@
-#!/usr/bin/env
+#!/usr/bin/env ruby
 
 require 'executable'
 
 class Hello < Executable::Command
   # Say it in uppercase?
-  def load=(bool)
+  def loud=(bool)
     @loud = bool
   end
 
@@ -27,5 +27,12 @@ class Hello < Executable::Command
     str  = str.upcase if loud?
     puts str
   end
+
+  # Where's the manpage?
+  def manpage!
+    puts cli.manpage
+    exit
+  end
 end
 
+Hello.execute

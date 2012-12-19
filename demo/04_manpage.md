@@ -5,10 +5,10 @@ method will automatically find the manpage and display it.
 
     sample = File.dirname(__FILE__) + '/samples'
 
-    load(sample + '/bin/hello')
-
-    manpage = Hello.cli.manpage
+    manpage = `ruby #{sample}/bin/hello --manpage`.strip
 
     manpage.assert == sample + '/man/hello.1'
 
+Note: Would rather use #load for this, but without a `.rb` on
+the `hello` file, it doesn't seem possible.
 
