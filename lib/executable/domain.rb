@@ -3,7 +3,7 @@ module Executable
   #
   module Domain
 
-    #
+    # TODO: Should this be in Help class?
     def usage_name
       list = []
       ancestors.each do |ancestor|
@@ -38,18 +38,24 @@ module Executable
     #     @name
     #   end
     #
+    # TODO: Currently there is an unfortunate issue with using
+    # this helper method. If does not correctly record the location
+    # the method is called, so default help message is wrong.
     #
     def attr_switch(name)
-      attr_writer name
-      module_eval %{
+      file, line = *caller[0].split(':')[0..1]
+      module_eval(<<-END, file, line.to_i)
+        def #{name}=(value)
+          @#{name}=(value)
+        end
         def #{name}?
           @#{name}
         end
-      }
+      END
     end
 
     #
-    # 
+    # Alias a switch.
     #
     def alias_switch(name, origin)
       alias_method "#{name}=", "#{origin}="
@@ -57,7 +63,7 @@ module Executable
     end
 
     #
-    #
+    # Alias an accessor.
     #
     def alias_accessor(name, origin)
       alias_method "#{name}=", "#{origin}="
@@ -72,7 +78,8 @@ module Executable
     end
 
     #
-    # Returns `help.to_s`.
+    # Returns `help.to_s`. If you want to provide your own help
+    # text you can override this method in your command subclass.
     #
     def to_s
       cli.to_s

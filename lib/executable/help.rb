@@ -5,9 +5,6 @@ module Executable
   # Encpsulates command help for defining and displaying well formated help
   # output in plain text, markdown or via manpages if found.
   #
-  # TODO: Currently doesn't hande aliases/shortcuts well and simply
-  # lists them as separate entries.
-  #
   # Creating text help in the fly is fine for personal projects, but
   # for production app, ideally you want to have man pages. You can
   # use the #markdown method to generate `.ronn` files and use the
@@ -200,8 +197,8 @@ module Executable
       end
 
       if !options.empty?
-        s << "OPTIONS\n" + options.map{ |max, opt|
-          "  %2s%-#{max}s %s" % [opt.mark, opt.usage, opt.description]
+        s << "OPTIONS\n" + options.map{ |max, opts, desc|
+          "  %-#{max}s %s" % [opts.join(' '), desc]
         }.join("\n")
       end
 
@@ -242,8 +239,8 @@ module Executable
 
       if !options.empty?
         s << "## OPTIONS"
-        s << options.map{ |max, opt|
-          "  * `#{opt.mark}%s`:\n    %s" % [opt.usage, opt.description]
+        s << options.map{ |max, opts, desc|
+          "  * `%s`:\n    %s" % [opts.join(' '), desc]
         }.join("\n\n")
       end
 
@@ -303,10 +300,17 @@ module Executable
         end
       end    
 
-      max = option_list.map{ |opt| opt.usage.size }.max.to_i + 2
+      # if two options have the same description, they must aliases
+      aliased_options = option_list.group_by{ |opt| opt.description }
 
-      option_list.map do |opt|
-        [max, opt]
+      list = aliased_options.map do |desc, opts|
+        [opts.map{ |o| "%s%s" % [o.mark, o.usage] }, desc]
+      end
+
+      max = list.map{ |opts, desc| opts.join(' ').size }.max.to_i + 2
+
+      list.map do |opts, desc|
+        [max, opts, desc]
       end
     end
 
@@ -352,11 +356,11 @@ module Executable
                   -1
       ancestors = cli_class.ancestors[0...stop_at]
       ancestors.reverse_each do |a|
-        a.instance_methods(false).each do |m|
+        a.public_instance_methods(false).each do |m|
           list << cli_class.instance_method(m)
         end
       end
-      list
+      list #.uniq
     end
 
     #
