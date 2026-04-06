@@ -1,13 +1,9 @@
-$:.unshift(File.dirname(__FILE__)+'/../lib')
-
-require 'microtest'
-require 'ae'
-
+require 'minitest/autorun'
 require 'executable'
 
-class ExecutableTestCase < MicroTest::TestCase
+class ExecutableTest < Minitest::Test
 
-  class MyCommand 
+  class MyCommand
     include Executable
 
     attr_reader :size, :quiet, :file
@@ -21,7 +17,7 @@ class ExecutableTestCase < MicroTest::TestCase
     end
 
     def quiet?
-      @quiet  
+      @quiet
     end
 
     def size=(integer)
@@ -37,23 +33,19 @@ class ExecutableTestCase < MicroTest::TestCase
     end
   end
 
-  def test_boolean_optiion
+  def test_boolean_option
     mc = MyCommand.execute('--quiet')
-    mc.assert.quiet?
+    assert mc.quiet?
   end
 
-  def test_integer_optiion
+  def test_integer_option
     mc = MyCommand.execute('--size=4')
-    mc.size.assert == 4
+    assert_equal 4, mc.size
   end
 
   def test_default_value
     mc = MyCommand.execute('')
-    mc.file.assert == 'hey.txt'
+    assert_equal 'hey.txt', mc.file
   end
-
-  #def usage_output
-  #  MyCommand.help.usage.assert == "{$0} [options] [subcommand]"
-  #end
 
 end

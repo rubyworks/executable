@@ -1,17 +1,15 @@
-task :default => [:test]
+require 'rubygems/package_task'
 
-desc "run unit tests (needs rubytest)"
+gemspec = Gem::Specification.load('executable.gemspec')
+
+Gem::PackageTask.new(gemspec) do |pkg|
+  pkg.need_zip = false
+  pkg.need_tar = false
+end
+
+desc "Run tests"
 task :test do
-  sh "rubytest -Ilib test/*.rb"
+  sh 'ruby -Ilib test/test_executable.rb'
 end
 
-desc "render README.rdoc to web/readme.html (need malt)"
-task :readme do
-  sh "malt README.rdoc > web/readme.html"
-end
-
-# if `README.rdoc` changes generate `web/readme.html`.
-file 'README.rdoc' do
-  sh "malt README.rdoc > web/readme.html"
-end
-
+task :default => :test

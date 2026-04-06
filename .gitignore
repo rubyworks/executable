@@ -1,8 +1,7 @@
-.reap/digest
 .yardoc
 doc
 log
 pkg
-web
-DEMO.md
-*.lock
+tmp
+Gemfile.lock
+*.gem

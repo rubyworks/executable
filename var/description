@@ -1,6 +1,0 @@
-Think of Executable as a *COM*, a Commandline Object Mapper,
-in much the same way that ActiveRecord is an ORM,
-an Object Relational Mapper. A class utilizing Executable
-can define a complete command line tool using nothing more
-than Ruby's own method definitions.
-

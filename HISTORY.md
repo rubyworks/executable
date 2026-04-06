@@ -1,5 +1,20 @@
 # RELEASE HISTORY
 
+## 1.3.0 / 2026-04-05
+
+Maintenance release. Modernized project tooling.
+
+Changes:
+
+* Replace custom Indexer system with standard gemspec.
+* Replace Travis CI with GitHub Actions.
+* Update Rakefile.
+* Fix typo in version.rb module name (Exectuable -> Executable).
+* Switch tests to minitest.
+* Update URLs to HTTPS.
+* Clean up obsolete files and .gitignore.
+
+
 ## 1.2.1 / 2012-12-19
 
 This release imporves the help output and manpage lookup

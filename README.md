@@ -1,10 +1,10 @@
-[Website](http://rubyworks.github.com/executable) |
-[Report Issue](http://github.com/rubyworks/executable/features) |
-[Source Code](http://github.com/rubyworks/executable)
-( [![Build Status](https://secure.travis-ci.org/rubyworks/indexer.png)](http://travis-ci.org/rubyworks/indexer) )
-
-
 # Executable
+
+[Source Code](https://github.com/rubyworks/executable) |
+[Report Issue](https://github.com/rubyworks/executable/issues)
+
+[![Gem Version](https://img.shields.io/gem/v/executable.svg?style=flat)](https://rubygems.org/gems/executable)
+[![Build Status](https://github.com/rubyworks/executable/actions/workflows/test.yml/badge.svg)](https://github.com/rubyworks/executable/actions/workflows/test.yml)
 
 Executable is to the commandline, what ActiveRecord is the database. 
 You can think of Executable as a *COM*, a Command-line Object Mapper,
